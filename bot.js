@@ -237,6 +237,7 @@ async function iniciar() {
     if (connection === 'open') {
       console.log('✔️ Conectado ao WhatsApp');
     }
+    
   });
 
   sock.ev.on('messages.upsert', async ({ messages }) => {
@@ -245,7 +246,28 @@ async function iniciar() {
     const jid = msg.key.remoteJid;
     const texto = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
     if (texto) await processaMensagem(sock, jid, texto);
+    
   });
+  const texto = mensagem.toLowerCase().trim();
+
+// Comando para reiniciar o bot
+if (['reiniciar', 'menu', 'voltar'].includes(texto)) {
+    userState[from] = 0;
+
+    await sock.sendMessage(from, { text: 
+        "🔁 *Bot reiniciado!*\n\n" +
+        "Olá, seja muito bem-vindo ao *Atendimento Fire Max* 👋\n\n" +
+        "🚫 *Privacidade Garantida:* suas informações estão protegidas.\n\n" +
+        "Escolha uma opção abaixo para continuar:\n" +
+        "1️⃣ Tenho problemas de desempenho\n" +
+        "2️⃣ Quero melhorar meu relacionamento\n" +
+        "3️⃣ Já ouvi falar do Fire Max e quero saber mais\n\n" +
+        "Digite o número da opção que melhor representa você:"
+    });
+
+    return;
+}
+
 }
 
 iniciar();
