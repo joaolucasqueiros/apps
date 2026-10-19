@@ -43,7 +43,12 @@ export function SecretWordGame() {
   }, [round?.phase]);
   useEffect(() => {
     if (round && round.phase !== "playing")
-      finish(round.id, "secret", round.phase === "won", 6 - round.lives);
+      finish(round.id, "secret", round.phase === "won", 6 - round.lives, {
+        correct: round.guesses.filter((letter) =>
+          round.word.en.includes(letter),
+        ).length,
+        total: round.guesses.length,
+      });
   }, [round, finish]);
   return (
     <GameShell
@@ -175,6 +180,7 @@ export function SecretWordGame() {
           </section>
           {round.phase !== "playing" && (
             <GameResult
+              roundId={round.id}
               won={round.phase === "won"}
               title={
                 round.phase === "won"

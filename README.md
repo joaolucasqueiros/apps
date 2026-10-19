@@ -1,6 +1,6 @@
-# English Path
+# VIRA · Inglês que vira conversa
 
-Plataforma de inglês para um aluno brasileiro com rotina variável. A aplicação funciona localmente, sem conta e sem API paga: aulas, atividades, histórico, flashcards e revisões permanecem no navegador. Este repositório contém somente a plataforma English Path.
+Plataforma de inglês para um aluno brasileiro com rotina variável. A aplicação funciona localmente, sem conta e sem API paga: aulas, atividades, histórico, flashcards e revisões permanecem no navegador. Este repositório contém somente a plataforma VIRA.
 
 ## Executar
 
@@ -26,7 +26,7 @@ O Playwright usa `/usr/bin/chromium` neste ambiente. Em outras máquinas, instal
 
 ## O que está implementado
 
-- Dashboard com dados reais, retomada da última aula, sessões sugeridas de 5/15/30 minutos, recomendações e gráficos de 7/30/90 dias.
+- Identidade VIRA com logo própria, fonte Space Grotesk local, paleta laranja/azul/lima, navegação em grupos, barra móvel e temas. Painel com missão principal, próximos passos, sessões de 5/15/30 minutos, gráfico selecionável e evidências por habilidade. O gráfico conta primeiras respostas independentes e preserva lacunas em dias sem dados.
 - **48 aulas de estruturas e comunicação**, organizadas de A1 a C1, com objetivos, explicação em português, estrutura visual, exemplos traduzidos e falados, erro comum, prática guiada, sete exercícios e duas questões reservadas de avaliação.
 - **171 palavras e expressões**, em 29 categorias: contexto, tradução, IPA quando cadastrado, ilustração por categoria, áudio sintetizado e botão para flashcards.
 - **761 questões**: 601 de estudo e 160 reservadas para avaliações. Há escolha, lacunas, ordenação de palavras, tradução, correção de erro, ditado e associação de ilustração/áudio a significado. A avaliação não tenta compreender qualquer resposta livre: aceita respostas cadastradas com normalização de caixa, pontuação, espaços e contrações suportadas.
@@ -41,7 +41,7 @@ O Playwright usa `/usr/bin/chromium` neste ambiente. Em outras máquinas, instal
 - Diagnóstico, avaliação por unidade e simulado por nível. Questões menos utilizadas são priorizadas. Uma avaliação em andamento mantém posição e respostas após recarga.
 - Histórico de respostas e tentativas, tempo com a página visível, classificações por tópico, conquistas sem sequência obrigatória e exportação/importação validada de backup.
 - Tema claro/escuro/sistema, navegação por teclado, foco visível, menu móvel com controle de foco, avisos acessíveis e respeito a movimento reduzido.
-- **Jogos livres**: memória inglês–português, Chuva de palavras (digitação) e Palavra secreta. Acesso independente das aulas, com recordes locais e sem afetar o progresso acadêmico.
+- **VIRA Arcade com sete jogos**, desafios, XP, precisão e recordes, separado das notas e do tempo de estudo. Perfil com níveis, ranks D/C/B/A/S, oito selos e backup dos jogos.
 - PWA com conteúdo local em cache e modo offline, além de configuração opcional real de autenticação/sincronização Supabase.
 
 ## Progresso e dados
@@ -98,7 +98,24 @@ Abra **Jogos livres**, no menu, a qualquer momento. Os jogos usam o vocabulário
 - **Chuva de palavras:** digite uma palavra visível e envie com Enter ou o botão. Dez acertos vencem; três palavras expiradas encerram a rodada. Há três velocidades, pausa manual e pausa automática ao ocultar a aba. O recorde considera apenas o tempo ativo, separado por velocidade.
 - **Palavra secreta:** use a tradução como dica e o teclado físico ou da tela para descobrir as letras. Seis letras incorretas encerram a rodada; revelar a resposta também encerra. O recorde é o menor número de erros em uma vitória.
 
-Partidas não geram respostas acadêmicas, revisões, conquistas, recomendações, notas nem tempo de estudo. Recordes e totais de partidas concluídas usam somente a chave `english-path-casual-games-v1` do localStorage. Não entram no backup acadêmico nem na sincronização Supabase. Rodadas em andamento recomeçam ao recarregar ou sair; rodadas abandonadas não contam para os totais. Limpar os dados do site apaga os recordes locais.
+- **Remixa:** reconstrua cinco palavras a partir de letras embaralhadas e pistas em português. Toque ou teclado físico; peças repetidas têm identidade própria.
+- **Caça-conexões:** tabuleiro de 8 × 8 com 4/5/6 palavras. Arraste, toque nas duas pontas ou use setas e Enter. As etapas acrescentam verticais e diagonais; uma ocorrência alternativa válida também é aceita.
+- **Frase na mão:** cinco frases das aulas em blocos, com pista traduzida e primeira palavra do modelo. Toque para selecionar/remover, conferir e ouvir.
+- **Bate-pronto:** oito traduções de múltipla escolha, três corações e meta de seis acertos. Feedback e exemplo entre escolhas, sem limite de tempo.
+
+Os quatro jogos novos têm três etapas. A segunda abre com três vitórias na família ou 400 XP no perfil; a terceira, com oito vitórias ou 1.200 XP. A primeira fica disponível desde o início. No celular, jogos de montagem usam botões de pelo menos 44 px de altura; o caça-palavras tem gestos e alternativa por duas pontas. A digitação mantém pausa manual/automática e entrada compatível com teclado móvel.
+
+Partidas não geram respostas acadêmicas, revisões, notas nem tempo de estudo. Geram XP e selos de participação no **perfil** (`/profile`). Cada vitória vale 40–80 XP conforme etapa e aproveitamento; a primeira vitória do dia dá +25 XP. Derrotas dão até 10 XP pelos acertos. Abandonar ou reiniciar não registra resultado. Cada rodada concluída tem ID persistente para evitar crédito duplicado por remontagem ou importação.
+
+O rank é **pessoal e de participação**, separado da trilha A1–C1 e de avaliações. D inicia em 0 XP, C em 500, B em 1.500, A em 4.000 e S em 9.000. O nível usa limiares de 100/300/600/1.000… XP. Estudos também pontuam: até 15 XP por questão independente, 80 por aula concluída, 10 por cartão lembrado/dia e 25 por produção revisada. Repetir o mesmo registro não acumula XP ilimitado. O sistema local não é um ranking competitivo entre contas.
+
+A chave `english-path-casual-games-v1` foi preservada; o payload v2 guarda histórico por rodada. Recordes v1 são mantidos e cada vitória antiga recebe 40 XP uma única vez, sem inventar datas/precisão. Exportação e importação **próprias dos jogos** ficam no perfil; a mesclagem une IDs e conserva os melhores recordes. Jogos continuam fora do backup acadêmico e da sincronização Supabase. Rodadas em andamento recomeçam ao sair. Limpar os dados do site apaga o progresso local; exporte uma cópia antes.
+
+## Turma fundadora
+
+A página pública **`/comece`** apresenta a VIRA e a proposta de um piloto para os primeiros 100 alunos: **R$ 19,90/mês**, plataforma e duas aulas coletivas ao vivo por semana. O CTA abre uma mensagem pronta no WhatsApp **+55 (38) 99814-6695**, informado pelo responsável. O número público padrão fica em `src/brand/brand.ts`; `VITE_FOUNDER_WHATSAPP` pode substituí-lo no build (código do país + DDD + número).
+
+A página abre sem o banco de estudo e funciona offline depois do cache inicial. Não há contador fictício de inscritos, depoimentos inventados, checkout ou cobrança automática. Início, horários e condições do piloto são combinados no contato. Controle de assinantes, autenticação obrigatória, cobrança recorrente e sala/agenda das aulas ao vivo ainda precisam de implementação/organização para a operação paga.
 
 ## Supabase opcional
 

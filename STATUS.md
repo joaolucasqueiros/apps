@@ -2,10 +2,11 @@
 
 ## Concluído
 
-- English Path na raiz do repositório; arquivos do projeto anterior removidos após backup privado verificado.
+- VIRA na raiz do repositório; arquivos do projeto anterior removidos após backup privado verificado.
 - React/TypeScript/Vite, React Router, identidade própria, sidebar desktop e menu móvel.
-- 18 áreas de navegação, estados vazios úteis e controles com ações reais.
-- Jogos livres separados do curso: memória bilíngue, digitação com palavras na tela e palavra secreta; recordes locais, teclado/toque e pausa automática na digitação. Tempo de jogos excluído do tempo de estudo.
+- Identidade VIRA, logo original, fonte local, navegação em grupos e barra inferior móvel. Painel com missão atual, próximos passos, gráficos por data e resultados por habilidade.
+- Sete jogos livres: memória, digitação, palavra secreta, anagramas, caça-palavras, frases em blocos e tradução por escolhas. Desafios, XP, precisão, oito selos, níveis e ranks pessoais D/C/B/A/S no perfil, separados das notas e da trilha A1–C1. Recordes antigos preservados, histórico sem duplicação e backup próprio dos jogos.
+- Página pública `/comece` com proposta da turma fundadora para 100 alunos, R$ 19,90/mês e duas aulas coletivas ao vivo por semana; contato no WhatsApp informado.
 - 48 aulas com trilha por nível, prática guiada, 7 atividades e 2 avaliações cada.
 - 171 palavras/expressões em 29 categorias; 12 situações de listening sintetizado e 10 textos de leitura.
 - 761 questões, com 601 itens de estudo e 160 reservados para avaliação.
@@ -29,8 +30,8 @@
 - TypeScript e build de produção executados com Node 20.20.2.
 - Vitest: correção, integridade dos 761 itens, separação de avaliações, SM-2, classificações, IndexedDB, recuperação, backup e conflitos.
 - Playwright/Chromium: aulas, feedback, retomada, flashcards, revisão, perfil/tema, diagnóstico, backup, modo sem microfone, rotas móveis e offline de produção.
-- Inspeção visual desktop (1440 px) e celular (390 px).
-- Expansão: build, 38 testes Vitest e 26 testes Playwright aprovados na raiz. Os fluxos incluem seleção direta nas seis cenas, desafios completos, retomada de conversação, feedback escrito, portfólio, revisão com frases novas, sessões equilibradas, áudio local e diagnóstico. As verificações dos jogos e seu isolamento acadêmico continuam na suíte.
+- Inspeção visual desktop (1440 px), celular (320/390 px), temas claro/escuro e viewport de digitação de 390 × 430 px.
+- VIRA: build, **52 testes Vitest e 34 testes Playwright** aprovados. Incluem migração dos recordes, XP sem duplicação, mesclagem/rejeição de backups de jogos, quatro novos jogos completos por toque/arraste/teclado, gráfico com evidências reais, contato WhatsApp, página pública sem IndexedDB e digitação em viewport móvel reduzido. Os fluxos acadêmicos, cenas, diagnóstico e isolamento do tempo de jogos continuam verificados.
 - Wrangler deploy --dry-run aprovado; emulação local serviu a rota direta da aula e o service worker com HTTP 200, sem erros de JavaScript.
 
 Os resultados finais executados são informados na entrega. Supabase real e o endereço HTTPS de produção do Cloudflare não foram validados neste ambiente.
@@ -43,5 +44,7 @@ Os resultados finais executados são informados na entrega. Supabase real e o en
 - Continuar aprofundando B2/C1 e realizar revisão editorial independente do corpus. Fluência exige também conversação espontânea e contato com linguagem real.
 - As consultas a ELLLO, Wikimedia e VOA receberam HTTP 403 do proxy. Links oficiais e importação de áudio estão disponíveis; gravações humanas externas não foram empacotadas como conteúdo verificado.
 - Validar voz/microfone em dispositivos reais e navegadores adicionais. Síntese disponível não garante reconhecimento de fala ou áudio offline.
-- Aulas, avaliações, sessões rápidas e rascunhos têm retomada persistente. Rodadas de jogos em andamento recomeçam ao sair ou recarregar; apenas os recordes de partidas concluídas persistem localmente.
+- Aulas, avaliações, sessões rápidas e rascunhos têm retomada persistente. Rodadas de jogos em andamento recomeçam ao sair ou recarregar; recordes, resultados e XP de partidas concluídas persistem localmente.
 - A plataforma não fornece certificação CEFR, nota acústica profissional nem correção semântica de escrita livre.
+
+- O piloto usa contato manual no WhatsApp. Não há cobrança recorrente, controle de acesso pago ou gestão de inscritos implementados. Horários e início dos encontros devem ser definidos pela organização.

@@ -1,3 +1,5 @@
+import { Brand } from "../brand/Brand";
+import { useProgression } from "../progression/useProgression";
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, Link, useLocation } from "react-router-dom";
 import {
@@ -27,12 +29,16 @@ import {
   Compass,
   MessageCircle,
   FlaskConical,
+  UserRound,
+  ChevronDown,
+  Zap,
 } from "lucide-react";
 import { useLearning } from "../hooks/useLearning";
 import { lessons } from "../content/lessons";
 import { words } from "../content/vocabulary";
 const links = [
   ["/", "Visão geral", LayoutDashboard],
+  ["/profile", "Meu perfil", UserRound],
   ["/course", "Meu curso", BookOpen],
   ["/grammar", "Gramática", SpellCheck],
   ["/vocabulary", "Vocabulário", Languages],
@@ -50,8 +56,53 @@ const links = [
   ["/library", "Biblioteca", Library],
   ["/games", "Jogos livres", Gamepad2],
 ] as const;
+function NavSection({
+  title,
+  paths,
+  due,
+}: {
+  title: string;
+  paths: string[];
+  due: number;
+}) {
+  const location = useLocation();
+  const active = paths.some(
+    (path) =>
+      location.pathname === path || location.pathname.startsWith(path + "/"),
+  );
+  const [open, setOpen] = useState(active);
+  useEffect(() => {
+    if (active) setOpen(true);
+  }, [active]);
+  return (
+    <details
+      className="nav-section"
+      open={open}
+      onToggle={(e) => setOpen(e.currentTarget.open)}
+    >
+      <summary>
+        {title}
+        <ChevronDown size={14} />
+      </summary>
+      <div>
+        {links
+          .filter(([path]) => paths.includes(path))
+          .map(([path, label, Icon]) => (
+            <NavLink key={path} to={path}>
+              <Icon size={17} />
+              <span>{label}</span>
+              {path === "/reviews" && due > 0 && (
+                <span className="nav-count">{due}</span>
+              )}
+            </NavLink>
+          ))}
+      </div>
+    </details>
+  );
+}
 export function AppLayout() {
   const { state, notice } = useLearning();
+  const progression = useProgression();
   const [mobile, setMobile] = useState(false);
   const [search, setSearch] = useState("");
   const [searching, setSearching] = useState(false);
@@ -113,7 +164,12 @@ export function AppLayout() {
     return () => window.removeEventListener("keydown", key);
   }, [searching]);
   return (
-    <div className="app">
+    <div
+      className={
+        "app vira-app " +
+        (location.pathname.startsWith("/games") ? "is-arcade" : "")
+      }
+    >
       <a className="skip-link" href="#main">
         Pular para o conteúdo
       </a>
@@ -146,57 +202,82 @@ export function AppLayout() {
           }
         }}
       >
-        <Link className="brand" to="/">
-          <span className="brand-symbol">
-            <Leaf size={24} />
-          </span>
-          <span>
-            english<span className="brand-path">path</span>
-            <small>UM PASSO DE CADA VEZ</small>
-          </span>
-        </Link>
-        <div className="workspace-label">SEU ESPAÇO DE APRENDIZAGEM</div>
+        <Brand />
+        <div className="workspace-label">TIRE SEU INGLÊS DA CABEÇA.</div>
         <nav aria-label="Navegação principal">
-          {links.map(([path, label, Icon]) => (
-            <div key={path}>
-              {["/grammar", "/flashcards", "/progress"].includes(path) && (
-                <div className="nav-divider" />
-              )}
-              {path === "/games" && (
-                <>
-                  <div className="nav-divider" />
-                  <div className="nav-group-label">UMA PAUSA PARA JOGAR</div>
-                </>
-              )}
-              <NavLink to={path} end={path === "/"}>
-                <Icon size={18} />
-                <span>{label}</span>
-                {path === "/reviews" && due > 0 && (
-                  <span className="nav-count">{due}</span>
-                )}
-              </NavLink>
-            </div>
-          ))}
+          <div className="nav-primary">
+            <NavLink to="/" end>
+              <LayoutDashboard size={19} />
+              <span>Visão geral</span>
+            </NavLink>
+            <NavLink to="/course">
+              <BookOpen size={19} />
+              <span>Meu curso</span>
+            </NavLink>
+            <NavLink to="/explore">
+              <Compass size={19} />
+              <span>Cenas interativas</span>
+            </NavLink>
+          </div>
+          <NavSection
+            title="PRATICAR INGLÊS"
+            paths={[
+              "/grammar",
+              "/vocabulary",
+              "/listening",
+              "/speaking",
+              "/conversation",
+              "/reading",
+              "/writing",
+            ]}
+            due={due}
+          />
+          <NavSection
+            title="FIXAR E APLICAR"
+            paths={["/flashcards", "/reviews", "/practice"]}
+            due={due}
+          />
+          <NavSection
+            title="ACOMPANHAR EVOLUÇÃO"
+            paths={["/tests", "/progress", "/library"]}
+            due={due}
+          />
+          <div className="nav-arcade-block">
+            <span className="nav-group-label">UMA PAUSA QUE VALE XP</span>
+            <NavLink to="/games" aria-label="Jogos livres">
+              <Gamepad2 size={22} />
+              <span>
+                Jogos livres<small>7 jogos · desafios · pontos</small>
+              </span>
+              <ArrowUpRight size={15} />
+            </NavLink>
+          </div>
         </nav>
         <div className="sidebar-bottom">
-          <div className="journey-note">
-            <span>Seu ritmo. Seu caminho.</span>
-            <p>Todo pequeno passo conta.</p>
-            <span className="tiny-leaves">✦ · ✦</span>
-          </div>
-          <NavLink className="settings-link" to="/settings">
-            <Settings size={18} />
-            Configurações
-          </NavLink>
-          <div className="profile-mini">
-            <span className="avatar">
-              {state.profile.name.slice(0, 1).toUpperCase()}
+          <Link to="/profile" className="sidebar-profile-card">
+            <span
+              className="sidebar-rank"
+              style={{ background: progression.rank.color }}
+            >
+              {progression.rank.key}
             </span>
             <div>
               <strong>{state.profile.name}</strong>
-              <small>Explorando o inglês · {state.profile.initialLevel}</small>
+              <small>
+                Nível {progression.level.level} ·{" "}
+                {progression.xp.toLocaleString("pt-BR")} XP
+              </small>
             </div>
-          </div>
+            <ArrowUpRight size={15} />
+          </Link>
+          <Link to="/comece" className="sidebar-founder">
+            <Zap size={15} />
+            Conheça a turma fundadora
+          </Link>
+          <NavLink className="settings-link" to="/settings">
+            <Settings size={17} />
+            Configurações
+          </NavLink>
         </div>
       </aside>
       <div className="app-body" inert={searching || (mobile && compact)}>
@@ -231,7 +312,7 @@ export function AppLayout() {
               <Bell size={19} />
               {due > 0 && <i />}
             </Link>
-            <Link to="/settings" className="avatar" aria-label="Meu perfil">
+            <Link to="/profile" className="avatar" aria-label="Meu perfil">
               {state.profile.name.slice(0, 1).toUpperCase()}
             </Link>
           </div>
@@ -245,8 +326,26 @@ export function AppLayout() {
         <main id="main" tabIndex={-1}>
           <Outlet />
         </main>
+        <nav className="mobile-bottom-nav" aria-label="Navegação rápida">
+          <NavLink to="/" end>
+            <LayoutDashboard size={20} />
+            <span>Hoje</span>
+          </NavLink>
+          <NavLink to="/course">
+            <BookOpen size={20} />
+            <span>Aprender</span>
+          </NavLink>
+          <NavLink to="/games">
+            <Gamepad2 size={21} />
+            <span>Arcade</span>
+          </NavLink>
+          <NavLink to="/profile">
+            <UserRound size={20} />
+            <span>Perfil</span>
+          </NavLink>
+        </nav>
         <footer className="site-footer">
-          <span>Feito para o seu ritmo.</span>
+          <span>VIRA · Inglês que vira conversa.</span>
           <span>
             <span className="status-dot" /> Seus dados ficam neste dispositivo{" "}
             <Link to="/settings">

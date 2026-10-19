@@ -1,0 +1,1213 @@
+.vira-app .arcade-hero {
+  background: #19233d;
+  color: #fffdf8;
+  border: 1px solid #36435f;
+  border-radius: 18px;
+  padding: 38px 42px;
+  min-height: 320px;
+  overflow: hidden;
+}
+.arcade-hero .eyebrow {
+  color: #ddf56d;
+}
+.vira-app .arcade-hero h2 {
+  font-size: 46px;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  font-weight: 650;
+}
+.arcade-hero h2 em {
+  color: #ddf56d;
+  font-style: normal;
+}
+.vira-app .arcade-hero p {
+  color: #bfc9dd;
+  max-width: 390px;
+  font-size: 12px;
+}
+.arcade-hero-cta {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  color: #ddf56d;
+  font-size: 12px;
+  margin-top: 15px;
+  min-height: 44px;
+}
+.arcade-hero-art {
+  position: relative;
+  width: 260px;
+  height: 230px;
+  flex-shrink: 0;
+}
+.arcade-hero-art > img {
+  width: 200px;
+  position: absolute;
+  top: 15px;
+  left: 35px;
+  transform: rotate(-9deg);
+}
+.arcade-hero-word {
+  position: absolute;
+  left: 0;
+  top: -8px;
+  font-size: 68px;
+  font-weight: 750;
+  letter-spacing: -5px;
+  color: #ffffff12;
+  transform: rotate(-8deg);
+}
+.arcade-hero-word > span {
+  color: #c7afff;
+}
+.arcade-hero-sticker {
+  position: absolute;
+  bottom: 10px;
+  right: -5px;
+  background: #ddf56d;
+  color: #19233d;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 12px 16px;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  transform: rotate(6deg);
+  border-radius: 5px;
+}
+.arcade-profile-strip {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 20px 24px;
+  margin: 18px 0 35px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.arcade-profile-strip > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.arcade-rank-square {
+  width: 43px;
+  height: 47px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  color: #19233d;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.arcade-profile-strip strong {
+  font-size: 12px;
+  display: block;
+}
+.arcade-profile-strip small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 5px;
+}
+.arcade-strip-xp {
+  min-width: 140px;
+}
+.arcade-strip-xp > strong {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.arcade-strip-xp > strong > small {
+  display: inline;
+  margin-left: 5px;
+  font-size: 9px;
+}
+.arcade-strip-wins {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 7px;
+  align-items: center;
+}
+.arcade-strip-wins > small {
+  grid-column: 1/3;
+}
+.arcade-strip-wins svg {
+  color: var(--green);
+}
+.arcade-profile-strip > .text-link {
+  font-size: 10px;
+}
+.arcade-catalog-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin: 0 0 20px;
+}
+.arcade-catalog-heading h2 {
+  font-size: 25px;
+  margin: 9px 0 0;
+}
+.arcade-filter {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.arcade-filter > button {
+  min-height: 44px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--muted);
+  padding: 8px 11px;
+  font-size: 10px;
+}
+.arcade-filter > button.active {
+  background: var(--ink);
+  color: #fffdf8;
+}
+.vira-app .games-catalog {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.vira-app .casual-game-card {
+  display: block;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.vira-app .casual-card-art {
+  height: 174px;
+  width: 100%;
+  min-height: 0;
+  color: #19233d;
+  position: relative;
+}
+.vira-app .casual-card-art > svg {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  width: 23px;
+  height: 23px;
+  opacity: 0.55;
+}
+.vira-app .casual-card-art > div {
+  flex-direction: row;
+  transform: rotate(-7deg);
+  gap: 6px;
+}
+.vira-app .casual-card-art > div > span {
+  font-size: 27px;
+  min-width: 0;
+  padding: 10px 13px;
+  border-radius: 6px;
+  background: #fffdf8;
+  color: #19233d;
+  border: 1px solid #19233d26;
+  box-shadow: 0 3px 0 #19233d1a;
+  font-weight: 600;
+}
+.vira-app .casual-card-art > div > span:nth-child(2) {
+  transform: rotate(10deg);
+}
+.casual-card-art > b {
+  position: absolute;
+  bottom: 13px;
+  left: 16px;
+  font-size: 7px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.vira-app .memory-tile .casual-card-art,
+.vira-app .anagram-tile .casual-card-art {
+  background: #ff9a73;
+}
+.vira-app .typing-tile .casual-card-art,
+.vira-app .search-tile .casual-card-art {
+  background: #ddf56d;
+}
+.vira-app .secret-tile .casual-card-art,
+.vira-app .sentence-tile .casual-card-art {
+  background: #c7afff;
+}
+.vira-app .sprint-tile .casual-card-art {
+  background: #a8ccf4;
+}
+.vira-app .typing-tile .casual-card-art > div > span {
+  min-width: 0;
+  font-size: 22px;
+  padding: 12px;
+}
+.vira-app .secret-tile .casual-card-art > div,
+.vira-app .search-tile .casual-card-art > div {
+  display: flex;
+  gap: 4px;
+}
+.vira-app .secret-tile .casual-card-art > div > span,
+.vira-app .search-tile .casual-card-art > div > span {
+  min-width: 0;
+  font-size: 23px;
+  padding: 9px;
+}
+.vira-app .casual-card-copy {
+  padding: 22px;
+}
+.vira-app .casual-card-copy h2 {
+  font-size: 21px;
+  margin-top: 12px;
+  line-height: 1.15;
+  min-height: 49px;
+}
+.vira-app .casual-card-copy p {
+  font-size: 11px;
+  min-height: 35px;
+  margin-bottom: 17px;
+}
+.vira-app .casual-card-copy .badge {
+  font-size: 8px;
+}
+.vira-app .casual-card-copy .text-link {
+  font-size: 11px;
+  margin-top: 0;
+  padding-top: 13px;
+}
+.arcade-how-to {
+  display: flex;
+  gap: 25px;
+  padding: 30px;
+  background: var(--purple);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  margin-top: 25px;
+}
+.arcade-how-number {
+  color: var(--purple-ink);
+  font-size: 55px;
+}
+.arcade-how-to h2 {
+  font-size: 23px;
+  margin: 0 0 10px;
+}
+.arcade-how-to p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 720px;
+}
+.arcade-how-to .text-link {
+  font-size: 11px;
+}
+.arcade-progress-strip {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 13px 18px;
+  margin: 0 0 20px;
+}
+.arcade-mini-rank {
+  background: var(--rank-color);
+  color: #19233d;
+  font-size: 23px;
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 35px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.arcade-progress-strip > div {
+  flex: 1;
+  max-width: 500px;
+}
+.arcade-progress-strip strong {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+.arcade-progress-strip strong > span {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 9px;
+}
+.arcade-family-wins {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--muted);
+}
+.arcade-stages {
+  margin: 0 0 25px;
+}
+.arcade-stage-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 11px;
+}
+.arcade-stage-heading > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.arcade-stage-heading small {
+  font-size: 9px;
+  color: var(--muted);
+}
+.arcade-stages > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.arcade-stages button {
+  text-align: left;
+  padding: 16px 17px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px 12px;
+  align-items: center;
+  color: var(--text);
+}
+.arcade-stages button > span {
+  grid-row: 1/3;
+  font-size: 20px;
+  color: var(--muted);
+}
+.arcade-stages button > strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+.arcade-stages button > small {
+  font-size: 9px;
+  color: var(--muted);
+}
+.arcade-stages button.active {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+.arcade-stages button.active > span {
+  color: var(--green);
+}
+.arcade-stages button:disabled {
+  opacity: 0.6;
+}
+.arcade-stages button.active:disabled {
+  opacity: 1;
+}
+.arcade-game-intro {
+  text-align: center;
+  padding: 38px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+.arcade-intro-glyph {
+  display: block;
+  font-size: 66px;
+  color: var(--green);
+  font-weight: 650;
+  letter-spacing: -5px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.arcade-intro-glyph > span {
+  display: inline-block;
+  color: var(--purple-ink);
+  transform: rotate(-16deg);
+}
+.arcade-game-intro h2 {
+  font-size: 29px;
+  margin-bottom: 12px;
+}
+.arcade-game-intro p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+  max-width: 540px;
+  margin: 0 auto 25px;
+}
+.arcade-game-intro .button {
+  margin: auto;
+}
+.puzzle-board {
+  padding: 32px;
+  text-align: center;
+}
+.puzzle-clue {
+  font-size: 28px;
+  margin: 15px 0 8px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.puzzle-board > .muted {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.puzzle-answer {
+  margin: 25px auto;
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.letter-answer > span {
+  width: 45px;
+  height: 52px;
+  border: 1px dashed var(--line);
+  border-bottom: 3px solid var(--line);
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+.letter-answer > span.filled {
+  background: var(--green-light);
+  color: var(--green);
+  border-style: solid;
+}
+.letter-bank,
+.sentence-bank {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.letter-bank > button,
+.sentence-bank > button {
+  min-width: 46px;
+  min-height: 50px;
+  background: var(--ink);
+  color: #fffdf8;
+  border: 1px solid #465674;
+  border-bottom: 4px solid #0b1329;
+  border-radius: 8px;
+  padding: 9px 13px;
+  font-size: 24px;
+  font-weight: 600;
+}
+.letter-bank > button {
+  text-transform: uppercase;
+}
+.letter-bank > button:disabled,
+.sentence-bank > button:disabled {
+  opacity: 0.22;
+  cursor: default;
+}
+.puzzle-message {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 24px;
+  line-height: 1.7;
+  margin: 23px 0 16px;
+}
+.puzzle-actions,
+.puzzle-confirmation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.puzzle-actions .button,
+.puzzle-confirmation .button {
+  font-size: 12px;
+}
+.sentence-answer {
+  background: var(--surface-alt);
+  border: 1px dashed var(--line);
+  padding: 15px;
+  min-height: 95px;
+  border-radius: 10px;
+  align-content: center;
+}
+.sentence-answer > span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.sentence-answer > button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  background: var(--purple);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 10px 12px;
+}
+.sentence-bank > button {
+  font-size: 14px;
+  min-height: 44px;
+}
+.search-stage {
+  padding: 25px;
+}
+.search-instructions {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+.word-search-grid {
+  max-width: 416px;
+  margin: auto;
+  padding: 8px;
+  background: var(--ink);
+  border: 1px solid #405273;
+  border-radius: 12px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.search-grid-row {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+.search-grid-row > button {
+  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  color: #fffdf8;
+  background: transparent;
+  border: 1px solid #ffffff0d;
+  border-radius: 5px;
+  font-size: 21px;
+  font-weight: 550;
+  touch-action: none;
+}
+.search-grid-row > button.found {
+  background: #ddf56d;
+  color: #19233d;
+}
+.search-grid-row > button.selected {
+  background: #ff794d;
+  color: #19233d;
+}
+.search-stage > .puzzle-message {
+  text-align: center;
+}
+.search-word-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 650px;
+  margin: 18px auto;
+}
+.search-word-list > span {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-align: center;
+}
+.search-word-list strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+}
+.search-word-list small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.search-word-list > span.found {
+  background: var(--green-light);
+  color: var(--green);
+}
+.search-stage > .button {
+  margin: auto;
+}
+.sprint-board > .progress-track {
+  margin-bottom: 30px;
+}
+.sprint-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin: 25px 0;
+}
+.sprint-options > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 15px;
+  background: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-bottom: 3px solid var(--line);
+  border-radius: 9px;
+  font-size: 20px;
+  overflow-wrap: anywhere;
+}
+.sprint-options > button.correct {
+  background: var(--green-light);
+  border-color: var(--green);
+  color: var(--green);
+  opacity: 1;
+}
+.sprint-options > button.incorrect {
+  border-color: var(--danger);
+  color: var(--danger);
+  opacity: 1;
+}
+.sprint-feedback {
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--surface-alt);
+  font-size: 13px;
+}
+.sprint-feedback p {
+  color: var(--muted);
+  font-size: 12px;
+}
+.sprint-feedback > .button-row {
+  justify-content: center;
+}
+.round-reward {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 20px;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 25px auto;
+  max-width: 750px;
+  text-align: left;
+}
+.round-reward > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 22px;
+  font-weight: 650;
+  color: var(--green);
+}
+.round-reward strong {
+  font-size: 12px;
+}
+.round-reward small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+.round-reward > a {
+  font-size: 11px;
+}
+.vira-app.is-arcade .site-footer {
+  display: none;
+}
+.vira-app .game-result.victory {
+  border-color: var(--green);
+}
+@media (min-width: 1500px) {
+  .vira-app .games-catalog {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1100px) {
+  .vira-app .arcade-hero {
+    padding: 30px;
+  }
+  .arcade-hero-art {
+    width: 210px;
+  }
+  .arcade-hero-art > img {
+    left: 0;
+  }
+  .vira-app .games-catalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .arcade-stages button {
+    padding: 13px 12px;
+    gap: 5px 8px;
+  }
+  .arcade-stages button > small {
+    line-height: 1.5;
+  }
+  .arcade-catalog-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+@media (max-width: 700px) {
+  .vira-app .arcade-hero {
+    padding: 28px;
+    position: relative;
+    min-height: 300px;
+  }
+  .vira-app .arcade-hero h2 {
+    font-size: 39px;
+  }
+  .vira-app .arcade-hero p {
+    max-width: 260px;
+    font-size: 11px;
+  }
+  .arcade-hero-art {
+    width: 150px;
+    height: 170px;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    top: auto;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .arcade-hero-art > img {
+    width: 150px;
+  }
+  .arcade-hero-word {
+    font-size: 44px;
+    left: 0;
+  }
+  .arcade-hero-sticker {
+    display: none;
+  }
+  .vira-app .games-catalog {
+    gap: 12px;
+  }
+  .vira-app .casual-card-art {
+    height: 145px;
+    width: 100%;
+    min-height: 0;
+  }
+  .vira-app .casual-card-art > div {
+    gap: 3px;
+  }
+  .vira-app .casual-card-art > div > span {
+    font-size: 19px;
+    padding: 10px 7px;
+  }
+  .vira-app .secret-tile .casual-card-art > div > span,
+  .vira-app .search-tile .casual-card-art > div > span {
+    font-size: 18px;
+    padding: 8px 5px;
+  }
+  .vira-app .typing-tile .casual-card-art > div > span {
+    font-size: 16px;
+    padding: 9px 7px;
+  }
+  .vira-app .casual-card-copy {
+    padding: 17px 14px;
+  }
+  .vira-app .casual-card-copy h2 {
+    font-size: 20px;
+    min-height: 47px;
+  }
+  .vira-app .casual-card-copy p {
+    font-size: 11px;
+    min-height: 45px;
+    margin: 10px 0 15px;
+  }
+  .vira-app .casual-card-copy .text-link {
+    font-size: 10px;
+  }
+  .arcade-profile-strip {
+    padding: 16px;
+    gap: 13px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .arcade-profile-strip > div:first-child {
+    min-width: 155px;
+  }
+  .arcade-strip-xp {
+    min-width: 90px;
+    flex: 1;
+  }
+  .arcade-strip-wins {
+    margin-left: 3px;
+    display: flex;
+    gap: 7px;
+  }
+  .arcade-strip-wins > small {
+    margin: 0;
+  }
+  .arcade-profile-strip > .text-link {
+    margin-left: auto;
+    min-height: 44px;
+  }
+  .arcade-rank-square {
+    width: 34px;
+    height: 39px;
+    font-size: 26px;
+  }
+  .arcade-filter > button {
+    padding: 8px 12px;
+  }
+  .arcade-catalog-heading h2 {
+    font-size: 25px;
+  }
+  .arcade-how-to {
+    padding: 23px;
+    gap: 15px;
+  }
+  .arcade-how-to h2 {
+    font-size: 21px;
+  }
+  .arcade-how-to p {
+    font-size: 11px;
+  }
+  .arcade-how-number {
+    font-size: 38px;
+  }
+  .arcade-stages > div:last-child {
+    gap: 7px;
+  }
+  .arcade-stages button {
+    padding: 12px 9px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .arcade-stages button > span {
+    font-size: 16px;
+    min-height: 20px;
+  }
+  .arcade-stages button > strong {
+    font-size: 11px;
+  }
+  .arcade-stages button > small {
+    font-size: 8px;
+  }
+  .arcade-progress-strip {
+    padding: 11px 12px;
+    gap: 9px;
+  }
+  .arcade-progress-strip strong {
+    font-size: 10px;
+  }
+  .arcade-progress-strip strong > span {
+    font-size: 8px;
+  }
+  .arcade-family-wins {
+    font-size: 8px;
+  }
+  .arcade-game-intro {
+    padding: 30px 22px;
+  }
+  .arcade-game-intro h2 {
+    font-size: 25px;
+  }
+  .arcade-game-intro p {
+    font-size: 12px;
+  }
+  .puzzle-board {
+    padding: 23px 17px;
+  }
+  .puzzle-clue {
+    font-size: 24px;
+  }
+  .puzzle-answer {
+    gap: 5px;
+    margin: 20px auto;
+  }
+  .letter-answer > span {
+    width: 35px;
+    height: 43px;
+    font-size: 21px;
+  }
+  .letter-bank {
+    gap: 7px;
+  }
+  .letter-bank > button {
+    min-width: 44px;
+    min-height: 48px;
+    font-size: 22px;
+    padding: 8px 10px;
+  }
+  .puzzle-message {
+    font-size: 11px;
+    margin: 18px 0 14px;
+  }
+  .puzzle-actions {
+    gap: 8px;
+  }
+  .puzzle-actions .button {
+    padding: 10px 13px;
+    font-size: 11px;
+  }
+  .sentence-answer {
+    padding: 10px;
+    min-height: 95px;
+  }
+  .sentence-answer > button {
+    font-size: 12px;
+    gap: 5px;
+    padding: 10px;
+  }
+  .sentence-bank {
+    gap: 6px;
+  }
+  .sentence-bank > button {
+    font-size: 13px;
+    padding: 10px;
+  }
+  .search-stage {
+    padding: 18px 12px;
+  }
+  .search-instructions {
+    font-size: 11px;
+  }
+  .word-search-grid {
+    padding: 5px;
+  }
+  .search-grid-row > button {
+    font-size: 19px;
+  }
+  .search-word-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+  .search-word-list > span {
+    padding: 10px 7px;
+  }
+  .search-word-list strong {
+    font-size: 13px;
+  }
+  .search-word-list small {
+    font-size: 9px;
+  }
+  .sprint-options {
+    gap: 9px;
+  }
+  .sprint-options > button {
+    font-size: 18px;
+    min-height: 65px;
+    padding: 12px;
+  }
+  .sprint-feedback {
+    padding: 15px;
+  }
+  .round-reward {
+    padding: 16px;
+    gap: 13px;
+    text-align: center;
+    flex-direction: column;
+  }
+  .vira-app.is-arcade:has(.game-scoreboard) .mobile-bottom-nav {
+    display: none;
+  }
+  .vira-app.is-arcade:has(.game-scoreboard) #main {
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+  .games-page:has(.game-scoreboard) > .page-title {
+    margin-bottom: 15px;
+  }
+  .games-page:has(.game-scoreboard) > .page-title h1 {
+    font-size: 25px;
+  }
+  .games-page:has(.game-scoreboard) > .page-title p,
+  .games-page:has(.game-scoreboard) > .page-title .eyebrow,
+  .games-page:has(.game-scoreboard) > .page-title .badge {
+    display: none;
+  }
+  .games-page:has(.game-scoreboard) > .arcade-progress-strip {
+    padding: 9px 12px;
+    margin-bottom: 13px;
+  }
+  .games-page:has(.game-scoreboard) > .arcade-stages {
+    margin-bottom: 13px;
+  }
+  .games-page:has(.game-scoreboard) > .arcade-stages > .arcade-stage-heading,
+  .games-page:has(.game-scoreboard) > .arcade-stages button:not(.active) {
+    display: none;
+  }
+  .games-page:has(.game-scoreboard) > .arcade-stages > div:last-child {
+    display: flex;
+  }
+  .games-page:has(.game-scoreboard) > .arcade-stages button.active {
+    padding: 7px 12px;
+    flex-direction: row;
+    align-items: center;
+    gap: 9px;
+    min-height: 36px;
+  }
+  .games-page:has(.game-scoreboard) > .arcade-stages button > small {
+    display: none;
+  }
+  .games-page:has(.game-scoreboard) .game-settings {
+    padding: 13px;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .games-page:has(.game-scoreboard) .game-settings label {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+  }
+  .games-page:has(.game-scoreboard) .game-settings > .button {
+    width: auto;
+    min-height: 44px;
+    align-self: end;
+    font-size: 10px;
+    padding: 10px;
+  }
+  .games-page:has(.game-scoreboard) .game-personal-best {
+    display: none;
+  }
+  .vira-app .game-scoreboard {
+    padding: 12px 14px;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .vira-app .game-scoreboard > div > span {
+    font-size: 8px;
+    min-height: 23px;
+    line-height: 1.4;
+    margin-bottom: 2px;
+  }
+  .vira-app .game-scoreboard strong {
+    font-size: 23px;
+    min-height: 29px;
+  }
+  .vira-app .game-scoreboard .game-no-clock {
+    font-size: 11px;
+    line-height: 28px;
+  }
+  .vira-app .memory-board {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+  }
+  .vira-app .memory-card {
+    min-height: 91px;
+    padding: 12px 5px;
+    gap: 7px;
+  }
+  .vira-app .memory-card > strong {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  .vira-app .memory-card > small {
+    font-size: 6px;
+    letter-spacing: 0.3px;
+  }
+  .vira-app .memory-card > svg {
+    width: 22px;
+  }
+  .vira-app .typing-arena {
+    height: 190px;
+  }
+  .vira-app .typing-tools {
+    margin: 8px 0;
+  }
+  .vira-app .typing-tools .button {
+    min-height: 44px;
+  }
+  .vira-app .typing-console {
+    margin-top: 10px;
+    padding: 12px;
+  }
+  .vira-app .typing-console label {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+  .vira-app .typing-console input {
+    min-width: 0;
+    font-size: 16px !important;
+  }
+  .vira-app .game-live-message {
+    min-height: 20px;
+    font-size: 10px;
+    margin: 10px 0;
+  }
+  .vira-app .secret-stage {
+    padding: 20px 12px;
+  }
+  .vira-app .secret-hint {
+    margin-bottom: 20px;
+  }
+  .vira-app .letter-keyboard button {
+    min-height: 46px;
+    height: 46px;
+  }
+  .vira-app .game-result .button {
+    font-size: 11px;
+  }
+  .vira-app .game-disclaimer {
+    font-size: 9px;
+    line-height: 1.8;
+  }
+}
+@media (max-width: 355px) {
+  .vira-app .casual-card-copy h2 {
+    font-size: 18px;
+  }
+  .vira-app .casual-card-art {
+    height: 123px;
+  }
+  .vira-app .casual-card-art > div > span {
+    font-size: 16px;
+    padding: 8px 6px;
+  }
+  .vira-app .casual-card-art > svg {
+    width: 18px;
+    right: 10px;
+    top: 10px;
+  }
+  .vira-app .typing-tile .casual-card-art > div > span {
+    font-size: 13px;
+  }
+  .vira-app .secret-tile .casual-card-art > div > span,
+  .vira-app .search-tile .casual-card-art > div > span {
+    font-size: 15px;
+    padding: 8px 4px;
+  }
+  .letter-answer > span {
+    width: 31px;
+    height: 40px;
+  }
+  .puzzle-actions .button {
+    font-size: 10px;
+    padding: 10px;
+  }
+  .search-grid-row > button {
+    font-size: 17px;
+  }
+  .vira-app .memory-card > strong {
+    font-size: 12px;
+  }
+  .vira-app .memory-card {
+    min-height: 82px;
+  }
+  .vira-app .secret-letters > span {
+    width: 24px;
+    height: 36px;
+    font-size: 17px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vira-app .typing-word {
+    top: var(--lane-top) !important;
+    left: 50% !important;
+    min-width: 180px;
+    max-width: 85%;
+  }
+}

@@ -38,6 +38,7 @@ export function MemoryGame() {
           | "memory-8",
         true,
         round.moves,
+        { correct: round.matched.length, total: round.moves },
       );
   }, [round, finish]);
   const mismatch = round?.flipped.length === 2;
@@ -172,6 +173,7 @@ export function MemoryGame() {
           </div>
           {round.phase === "won" && (
             <GameResult
+              roundId={round.id}
               won
               title="Todas as conexões encontradas!"
               onRestart={start}

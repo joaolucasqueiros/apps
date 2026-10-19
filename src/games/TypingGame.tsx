@@ -62,6 +62,7 @@ export function TypingGame() {
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const pauseRef = useRef<HTMLButtonElement>(null);
+  const toolsRef = useRef<HTMLDivElement>(null);
   const { records, finish, storageError } = useGameRecords();
   const playing = round?.phase === "playing";
   const start = () => {
@@ -93,12 +94,49 @@ export function TypingGame() {
     else inputRef.current?.focus();
   }, [playing, paused, round?.id]);
   useEffect(() => {
+    if (!playing || paused) return;
+    let frame = 0;
+    const fitPhone = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const viewport = window.visualViewport;
+        if (
+          innerWidth > 700 ||
+          (viewport?.height ?? innerHeight) >= 650 ||
+          (viewport?.scale ?? 1) !== 1
+        )
+          return;
+        const tools = toolsRef.current;
+        if (tools)
+          window.scrollTo({
+            top: Math.max(
+              0,
+              tools.getBoundingClientRect().top + window.scrollY - 8,
+            ),
+            behavior: "instant",
+          });
+      });
+    };
+    fitPhone();
+    window.visualViewport?.addEventListener("resize", fitPhone);
+    window.addEventListener("resize", fitPhone);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.visualViewport?.removeEventListener("resize", fitPhone);
+      window.removeEventListener("resize", fitPhone);
+    };
+  }, [playing, paused, round?.id]);
+  useEffect(() => {
     if (round && round.phase !== "playing")
       finish(
         round.id,
         `typing-${round.pace}`,
         round.phase === "won",
         round.elapsedMs,
+        {
+          correct: round.correct,
+          total: round.correct + round.mistakes + (3 - round.lives),
+        },
       );
   }, [round, finish]);
 
@@ -192,7 +230,7 @@ export function TypingGame() {
           </div>
           {playing && (
             <>
-              <div className="typing-tools">
+              <div className="typing-tools" ref={toolsRef}>
                 <span>Digite uma palavra inteira e pressione Enter.</span>
                 <button
                   ref={pauseRef}
@@ -311,6 +349,7 @@ export function TypingGame() {
           )}
           {round.phase !== "playing" && (
             <GameResult
+              roundId={round.id}
               won={round.phase === "won"}
               title={
                 round.phase === "won"
