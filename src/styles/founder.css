@@ -112,21 +112,7 @@
 .founder-page .button:hover {
   background: #303f60;
 }
-.founder-demo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  font-size: 11px;
-  font-weight: 600;
-}
-.founder-demo > svg {
-  background: #e6dfd2;
-  border-radius: 50%;
-  padding: 8px;
-  width: 32px;
-  height: 32px;
-}
+
 .founder-hero-note {
   color: #737987;
   font-size: 9px;
@@ -392,19 +378,44 @@
   background: #19233d;
   color: #fffdf8;
   max-width: none;
-  padding-block: 80px;
+  padding-block: 44px;
   display: grid;
-  grid-template-columns: minmax(0, 550px) minmax(300px, 390px);
-  gap: 90px;
+  grid-template-columns: minmax(0, 450px) minmax(300px, 360px);
+  gap: 60px;
   justify-content: center;
   align-items: center;
 }
 .founder-offer-section .founder-eyebrow {
   color: #ddf56d;
 }
-.founder-offer-section h2 {
-  font-size: 47px;
+.founder-offer-section .founder-live-heading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 40px;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+  margin: 21px 0 18px;
 }
+.founder-live-number {
+  font-size: 116px;
+  line-height: 0.85;
+  letter-spacing: -7px;
+  color: #ddf56d;
+}
+.founder-live-heading em {
+  display: block;
+}
+.founder-offer-copy > p {
+  margin-bottom: 14px;
+}
+.founder-offer-copy > ul {
+  margin: 16px 0 0;
+}
+.founder-offer-copy > ul > li {
+  margin: 9px 0;
+}
+
 .founder-offer-section h2 em {
   font-style: normal;
   color: #c7afff;
@@ -419,7 +430,7 @@
   color: #ddf56d;
 }
 .founder-price-card {
-  padding: 33px;
+  padding: 25px;
   background: #fffdf8;
   color: #19233d;
   border-radius: 15px;
@@ -427,7 +438,9 @@
   box-shadow: 8px 8px 0 #ddf56d;
 }
 .founder-price-tag {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-size: 8px;
   font-weight: 650;
   letter-spacing: 1px;
@@ -446,7 +459,7 @@
   display: flex;
   align-items: baseline;
   gap: 7px;
-  margin: 28px 0 14px;
+  margin: 17px 0 9px;
   white-space: nowrap;
 }
 .founder-price > span {
@@ -463,7 +476,7 @@
   color: #60697c;
 }
 .founder-price-card > .button {
-  margin: 24px 0 18px;
+  margin: 17px 0 14px;
   background: #ff794d;
   color: #19233d;
   font-size: 11px;
@@ -471,18 +484,9 @@
 }
 .founder-price-card > small {
   display: block;
-  font-size: 9px;
-  line-height: 1.9;
+  font-size: 10px;
+  line-height: 1.65;
   color: #697082;
-}
-.founder-price-bottom {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-top: 1px solid #dfdace;
-  margin-top: 22px;
-  padding-top: 17px;
-  font-size: 9px;
 }
 .founder-faq {
   display: grid;
@@ -641,8 +645,12 @@
     gap: 40px;
     padding-inline: 35px;
   }
-  .founder-offer-section h2 {
-    font-size: 39px;
+  .founder-offer-section .founder-live-heading {
+    font-size: 34px;
+    gap: 15px;
+  }
+  .founder-live-number {
+    font-size: 102px;
   }
   .founder-price-card {
     padding: 27px;
@@ -712,9 +720,7 @@
     font-size: 11px;
     padding: 14px 17px;
   }
-  .founder-demo {
-    font-size: 10px;
-  }
+
   .founder-hero-note {
     font-size: 8px;
   }
@@ -827,23 +833,71 @@
   }
   .founder-offer-section {
     grid-template-columns: 1fr;
-    padding: 50px 23px;
-    gap: 25px;
+    padding: 28px 22px;
+    gap: 19px;
   }
-  .founder-offer-section h2 {
-    font-size: 38px;
-    letter-spacing: -1.5px;
+  .founder-offer-section .founder-live-heading {
+    font-size: clamp(28px, 8.2vw, 35px);
+    gap: 15px;
+    margin: 17px 0 14px;
+  }
+  .founder-live-number {
+    font-size: 94px;
+    letter-spacing: -5px;
+  }
+  .founder-offer-copy > p {
+    font-size: 12px;
+    line-height: 1.7;
+    margin: 0 0 12px;
+  }
+  .founder-offer-copy > ul {
+    margin: 12px 0 0;
+  }
+  .founder-offer-copy > ul > li {
+    font-size: 11px;
+    margin: 7px 0;
+    line-height: 1.6;
+  }
+  .founder-offer-section .founder-eyebrow {
+    font-size: 7px;
+    letter-spacing: 0.7px;
+    gap: 7px;
+  }
+  .founder-offer-section .founder-eyebrow svg {
+    width: 14px;
+    height: 14px;
   }
   .founder-offer-section p {
     font-size: 12px;
   }
   .founder-price-card {
     max-width: 430px;
-    padding: 27px;
-    margin-right: 8px;
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    box-shadow: 5px 5px 0 #ddf56d;
   }
   .founder-price-card p.founder-price {
-    font-size: 65px;
+    font-size: 59px;
+    margin: 13px 0 7px;
+  }
+  .founder-price-card > p:not(.founder-price) {
+    font-size: 11px;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+  .founder-price-tag {
+    font-size: 7px;
+    letter-spacing: 0.6px;
+    padding: 7px 9px;
+  }
+  .founder-price-card > .button {
+    margin: 14px 0 12px;
+    min-height: 46px;
+  }
+  .founder-price-card > small {
+    font-size: 10px;
+    line-height: 1.6;
   }
   .founder-price-card > .button {
     font-size: 11px;
@@ -918,8 +972,23 @@
   .founder-price-card p.founder-price {
     font-size: 57px;
   }
-  .founder-offer-section h2 {
-    font-size: 33px;
+  .founder-offer-section {
+    padding: 24px 18px;
+    gap: 16px;
+  }
+  .founder-offer-section .founder-live-heading {
+    font-size: 28px;
+    gap: 12px;
+    margin: 14px 0 12px;
+  }
+  .founder-live-number {
+    font-size: 82px;
+  }
+  .founder-price-card {
+    padding: 18px;
+  }
+  .founder-price-card p.founder-price {
+    font-size: 54px;
   }
 }
 
@@ -931,4 +1000,11 @@
 .founder-pain-art > i svg {
   width: 70px;
   height: 70px;
+}
+
+@media (max-width: 700px) {
+  .founder-hero h1 {
+    font-size: clamp(48px, 14vw, 68px);
+    letter-spacing: -0.065em;
+  }
 }

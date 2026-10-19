@@ -6,9 +6,7 @@ import {
   ArrowUpRight,
   Check,
   Gamepad2,
-  Headphones,
   MessageCircle,
-  Play,
   Sparkles,
   Video,
   Zap,
@@ -64,13 +62,9 @@ export default function FounderLanding() {
                 Quero fazer essa virada
                 <ArrowRight size={18} />
               </a>
-              <Link to="/" className="founder-demo">
-                <Play size={16} />
-                Experimentar a plataforma
-              </Link>
             </div>
             <span className="founder-hero-note">
-              Aulas curtas, cenas interativas, jogos e encontros ao vivo.
+              Plataforma + 2 aulas coletivas ao vivo por semana.
             </span>
           </div>
           <div className="founder-hero-art" aria-hidden="true">
@@ -220,47 +214,44 @@ export default function FounderLanding() {
           </div>
         </section>
         <section className="founder-offer-section" id="turma-fundadora">
-          <div>
+          <div className="founder-offer-copy">
             <span className="founder-eyebrow">
-              <Sparkles size={16} />O COMEÇO É COM OS PRIMEIROS 100
+              <Sparkles size={16} /> TURMA FUNDADORA · PRIMEIROS 100
             </span>
-            <h2>
-              Entre no começo.
-              <br />
-              <em>Ajude a virar o jogo.</em>
+            <h2
+              className="founder-live-heading"
+              aria-label="2 aulas coletivas ao vivo por semana"
+            >
+              <span className="founder-live-number">2</span>
+              <span>
+                aulas ao vivo<em>por semana.</em>
+              </span>
             </h2>
             <p>
-              Estamos organizando uma turma piloto para validar a experiência
-              com alunos reais. A proposta é simples: acesso à plataforma e
-              prática acompanhada em grupo.
+              Aulas coletivas para conversar, tirar dúvidas e ganhar confiança.
             </p>
             <ul>
               <li>
-                <Check size={18} />
-                Plataforma de estudo, revisões e jogos.
+                <Check size={17} /> Plataforma com 48 aulas de inglês.
               </li>
               <li>
-                <Check size={18} />
-                Duas aulas coletivas ao vivo por semana.
+                <Check size={17} /> Jogos, cenas interativas e revisões.
               </li>
               <li>
-                <Check size={18} />
-                Espaço para dúvidas e troca durante os encontros.
-              </li>
-              <li>
-                <Check size={18} />
-                Seu feedback ajudando a melhorar a VIRA.
+                <Check size={17} /> Prática acompanhada em grupo.
               </li>
             </ul>
           </div>
           <div className="founder-price-card">
-            <span className="founder-price-tag">TURMA FUNDADORA · PILOTO</span>
+            <span className="founder-price-tag">
+              <Video size={14} /> PLATAFORMA + AULAS AO VIVO
+            </span>
             <p className="founder-price">
               <span>R$</span>
               {brand.pilotPrice}
               <small>/mês</small>
             </p>
-            <p>Plataforma + duas aulas coletivas ao vivo por semana.</p>
+            <p>Tudo incluído na mensalidade da turma fundadora.</p>
             {contact ? (
               <a
                 className="button"
@@ -275,14 +266,9 @@ export default function FounderLanding() {
               <p>O contato da turma será divulgado aqui.</p>
             )}
             <small>
-              Confirme início, horários, formato e condições pelo WhatsApp antes
-              de se inscrever. Este botão abre uma conversa; não realiza
-              cobrança.
+              Confirme início, horários e condições no WhatsApp. O contato não
+              realiza cobrança.
             </small>
-            <div className="founder-price-bottom">
-              <MessageCircle size={16} />
-              Conversa direta com a organização.
-            </div>
           </div>
         </section>
         <section className="founder-faq">
