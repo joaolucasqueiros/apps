@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, Clock, Search, CheckCircle2 } from "lucide-react";
+import { coursePaths, levelOrder } from "../content/curriculum";
 import { lessons, priorities } from "../content/lessons";
 import { useLearning } from "../hooks/useLearning";
 import { mastery } from "../utils/learning";
@@ -9,7 +10,9 @@ import type { Level } from "../types";
 export function Course() {
   const { state } = useLearning();
   const grammar = useLocation().pathname === "/grammar";
-  const [level, setLevel] = useState<Level | "Todos">(grammar ? "Todos" : "A2");
+  const [level, setLevel] = useState<Level | "Todos">(
+    grammar ? "Todos" : state.profile.initialLevel,
+  );
   const [search, setSearch] = useState("");
   const filtered = lessons
     .filter(
@@ -18,12 +21,16 @@ export function Course() {
         `${l.title} ${l.subtitle}`.toLowerCase().includes(search.toLowerCase()),
     )
     .sort((a, b) => {
-      const rank = (id: string) => {
-        const i = priorities.indexOf(id);
-        return i < 0 ? 99 : i;
-      };
+      const rank = (id: string) =>
+        levelOrder.flatMap((l) => coursePaths[l].lessons).indexOf(id);
       return rank(a.id) - rank(b.id);
     });
+  const pathLevel = level === "Todos" ? state.profile.initialLevel : level;
+  const path = coursePaths[pathLevel];
+  const nextLesson =
+    path.lessons.find(
+      (id) => !state.lessons.some((p) => p.id === id && p.completed),
+    ) || path.lessons[0];
   const done = state.lessons.filter((l) => l.completed).length;
   return (
     <>
@@ -54,6 +61,32 @@ export function Course() {
           <small>Todas as aulas estão disponíveis. Sem bloqueios.</small>
         </div>
       </section>
+      {!grammar && (
+        <section className="course-path-panel">
+          <span className="eyebrow">
+            TRILHA {pathLevel} · TODAS AS ETAPAS ESTÃO ABERTAS
+          </span>
+          <h2>{path.title}</h2>
+          <p>{path.goal}</p>
+          <div className="path-stages">
+            <Link to={"/lesson/" + nextLesson}>
+              <span>01</span>Aulas e estruturas
+            </Link>
+            <Link to="/explore">
+              <span>02</span>Vocabulário interativo
+            </Link>
+            <Link to={"/conversation/" + path.conversation}>
+              <span>03</span>Conversa e escuta
+            </Link>
+            <Link to={"/practice/projects/" + path.project}>
+              <span>04</span>Projeto de comunicação
+            </Link>
+          </div>
+          <Link className="text-link" to="/practice/diagnostic">
+            Descobrir meu ponto de partida →
+          </Link>
+        </section>
+      )}
       <div className="filter-row">
         <div className="level-tabs" aria-label="Nível">
           {(["Todos", "A1", "A2", "B1", "B2", "C1"] as const).map((l) => (
@@ -64,7 +97,9 @@ export function Course() {
               onClick={() => setLevel(l)}
             >
               {l}
-              {l === "A2" && <span> seu ponto de partida</span>}
+              {l === state.profile.initialLevel && (
+                <span> seu ponto de partida</span>
+              )}
             </button>
           ))}
         </div>
@@ -136,9 +171,10 @@ export function Course() {
         </p>
       )}
       <div className="info-note">
-        O currículo inicial contém 24 unidades de gramática. Os níveis CEFR
-        organizam a dificuldade; concluir as unidades não substitui uma
-        avaliação completa de proficiência.
+        O currículo contém {lessons.length} aulas com prática e avaliação, além
+        de cenas, conversas e projetos. Os níveis CEFR organizam a dificuldade;
+        concluir as unidades não substitui uma avaliação completa de
+        proficiência.
       </div>
     </>
   );

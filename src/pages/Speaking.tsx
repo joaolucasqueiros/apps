@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { conversations } from "../content/communication";
 import { useEffect, useRef, useState } from "react";
 import {
   Mic,
@@ -25,7 +27,7 @@ type Recognition = {
   onerror: ((e: { error: string }) => void) | null;
   onend: (() => void) | null;
 };
-const prompts = [
+const initialPrompts = [
   {
     target: "I worked yesterday, but I am taking a break now.",
     pt: "Eu trabalhei ontem, mas estou fazendo uma pausa agora.",
@@ -57,6 +59,19 @@ const prompts = [
     question: "Why are you learning English?",
     model: "I want to speak with visitors and learn more about technology.",
   },
+];
+const prompts = [
+  ...initialPrompts,
+  ...conversations.flatMap((c) =>
+    c.turns
+      .slice(0, 2)
+      .map((t) => ({
+        target: t.model,
+        pt: t.goal,
+        question: t.question,
+        model: t.model,
+      })),
+  ),
 ];
 export function Speaking() {
   const { state, update, notify } = useLearning();
@@ -174,6 +189,11 @@ export function Speaking() {
         title="Encontre confiança, uma frase por vez."
         description="Ouça, repita e experimente. Você não precisa falar perfeitamente para começar."
       />
+      <nav className="practical-nav" aria-label="Práticas de fala">
+        <Link to="/conversation">Conversas completas</Link>
+        <Link to="/practice/pronunciation">Laboratório de pronúncia</Link>
+        <Link to="/practice/projects">Projetos para usar sua voz</Link>
+      </nav>
       <div className="level-tabs">
         <button
           className={mode === "shadow" ? "active" : ""}

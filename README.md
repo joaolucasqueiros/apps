@@ -27,12 +27,16 @@ O Playwright usa `/usr/bin/chromium` neste ambiente. Em outras máquinas, instal
 ## O que está implementado
 
 - Dashboard com dados reais, retomada da última aula, sessões sugeridas de 5/15/30 minutos, recomendações e gráficos de 7/30/90 dias.
-- **24 unidades de gramática**, organizadas de A1 a C1, com objetivos, explicação em português, estrutura visual, exemplos traduzidos e falados, erro comum, prática guiada, sete exercícios e duas questões reservadas de avaliação.
-- **92 palavras e expressões**, em 23 categorias: contexto, tradução, IPA, ilustração por categoria, áudio sintetizado e botão para flashcards.
-- **338 questões**: 257 de estudo e 81 reservadas para avaliações. Há escolha, lacunas, ordenação de palavras, tradução, correção de erro, ditado e associação de ilustração/áudio a significado. A avaliação não tenta compreender qualquer resposta livre: aceita respostas cadastradas com normalização de caixa, pontuação, espaços e contrações suportadas.
-- Seis situações de listening sintetizado e quatro textos de leitura; transcrição, tradução, repetição de frases e perguntas de compreensão.
+- **48 aulas de estruturas e comunicação**, organizadas de A1 a C1, com objetivos, explicação em português, estrutura visual, exemplos traduzidos e falados, erro comum, prática guiada, sete exercícios e duas questões reservadas de avaliação.
+- **171 palavras e expressões**, em 29 categorias: contexto, tradução, IPA quando cadastrado, ilustração por categoria, áudio sintetizado e botão para flashcards.
+- **761 questões**: 601 de estudo e 160 reservadas para avaliações. Há escolha, lacunas, ordenação de palavras, tradução, correção de erro, ditado e associação de ilustração/áudio a significado. A avaliação não tenta compreender qualquer resposta livre: aceita respostas cadastradas com normalização de caixa, pontuação, espaços e contrações suportadas.
+- 12 situações de listening sintetizado e 10 textos de leitura; transcrição, tradução, repetição de frases e perguntas de compreensão.
 - Speaking com síntese, reconhecimento quando suportado, comparação de palavras, gravação local temporária, reprodução da gravação e alternativa digitada. Não há nota fonética inventada.
-- Writing com quatro propostas, respostas-modelo, checklist e autoavaliação. Rascunhos são preservados durante a digitação. O sistema não afirma corrigir semanticamente escrita livre.
+- Writing com 12 propostas, respostas-modelo, dicas automáticas de padrões de erro, checklist e autoavaliação. Rascunhos são preservados durante a digitação. O sistema não afirma corrigir semanticamente escrita livre.
+- **Seis cenas interativas, com 92 elementos:** corpo, casa, carro, trânsito, restaurante e cotidiano. Toque na ilustração ou nos pontos, veja inglês/tradução/exemplo, ouça e crie flashcards. Desafios de localização registram respostas.
+- **12 conversas guiadas de quatro turnos**, com resposta livre por texto/voz, retomada, ajuda opcional e critérios explícitos.
+- **Oito práticas de pronúncia**, cinco projetos de comunicação por nível e diagnóstico de produção complementar à avaliação objetiva.
+- Revisão adaptativa de erros e sessões que combinam gramática, vocabulário, listening e reading, com sugestões de produção ao terminar.
 - Flashcards com criação, edição, exclusão, histórico e SM-2 adaptado; revisão de cartões vencidos e indicação da próxima data.
 - Diagnóstico, avaliação por unidade e simulado por nível. Questões menos utilizadas são priorizadas. Uma avaliação em andamento mantém posição e respostas após recarga.
 - Histórico de respostas e tentativas, tempo com a página visível, classificações por tópico, conquistas sem sequência obrigatória e exportação/importação validada de backup.
@@ -58,7 +62,7 @@ Classificação usa até 20 **primeiras tentativas** por tópico, excluindo resp
 | Domínio consolidado | Pelo menos 8 questões distintas, 90% e atividade em pelo menos 2 datas |
 | Em aprendizagem     | Demais casos                                                           |
 
-Prática oral e escrita livre não recebem uma nota de domínio a partir de autoavaliação. O nível de partida A2 é uma informação inicial do perfil. Resultados de testes são amostras por competência, não certificação nem uma inferência de CEFR global.
+Prática oral e escrita livre não recebem uma nota de domínio a partir de autoavaliação. A2 é o ponto de partida padrão, que pode ser alterado no diagnóstico prático e orienta a trilha e as sessões. Resultados de testes são amostras por competência, não certificação nem uma inferência de CEFR global.
 
 ### Revisão espaçada
 
@@ -67,6 +71,24 @@ SM-2 adaptado em `src/utils/learning.ts`: notas 0, 3, 4 e 5. Esquecimento reinic
 ### Backup
 
 Em **Configurações → Exportar JSON**, baixe o estado acadêmico completo. Faça isso antes de limpar dados do navegador ou trocar de dispositivo. Para restaurar, importe um JSON de até 10 MB, confira o resumo e escolha **Mesclar backup**. Arquivos incompatíveis, campos inválidos e IDs duplicados são recusados antes de alterar o estado. Respostas/testes/sessões são unidos por ID; entidades editáveis usam a atualização mais recente. Exclusões de flashcards são marcadores persistentes.
+
+## Cenas e prática de comunicação
+
+- **Cenas interativas** (`/explore`): seis ilustrações próprias em SVG. A seleção mostra o nome em inglês, tradução, frase traduzida e síntese de voz. Há lista acessível, navegação por teclado, indicador de elementos explorados e desafios de seis itens. Descobertas e respostas ficam salvas; uma rodada de desafio em andamento recomeça ao sair. Explorar não concede automaticamente um acerto. As palavras novas também aparecem no vocabulário e nos jogos.
+- **Conversação** (`/conversation`): 12 situações do cotidiano, viagens e trabalho. Cada roteiro tem quatro turnos; respostas e rascunhos são retomados após recarga. É prática guiada, sem interlocutor de IA. As produções são autoavaliadas e não entram no cálculo de domínio objetivo.
+- **Prática e projetos** (`/practice`): erros por tema com frases ainda não respondidas antes das repetidas; oito práticas de sons/ritmo; cinco projetos A1–C1; diagnóstico de fala/escrita complementar ao teste objetivo. O portfólio e as evidências por habilidade aparecem em Minha evolução.
+- **Sessões flexíveis**: 5/15/30 minutos são estimativas, não cronômetros. Elas propõem 4/7/12 questões em quatro habilidades objetivas e priorizam nível e dificuldades. Conversação e escrita são sugeridas para complementar a produção.
+- **Escrita**: 15 famílias de padrões locais fornecem trechos, sugestões, explicações e links para as aulas. Não há correção semântica integral nem alteração automática do texto. Ausência de alertas não comprova correção.
+
+As novas produções e critérios usam `attempts`/`drafts` do estado acadêmico existente. Continuam compatíveis com backup e sincronização manual, sem migração destrutiva. As autoavaliações permanecem excluídas das notas objetivas.
+
+## Áudio humano e gravações
+
+Listening oferece links para VOA, British Council e BBC e uma área para importar **uma gravação própria ou autorizada de até 20 MB**. O arquivo fica no IndexedDB `english-path-media`, store `clips`, e pode ser ouvido offline neste navegador. Importar outro substitui o arquivo atual. Transcrição e anotações ficam nos rascunhos; a reflexão salva é autoavaliação, sem nota automática de compreensão. O arquivo binário não entra no backup JSON nem no Supabase.
+
+As tentativas de consultar ELLLO, Wikimedia e VOA receberam HTTP 403 do proxy neste ambiente. Por isso, não foram cadastrados arquivos externos como verificados nem incluídas gravações humanas de terceiros no pacote. Os links de recursos não constituem validação de disponibilidade ou de permissões para redistribuir áudios. As 12 lições locais usam voz sintetizada e estão identificadas assim.
+
+Nas conversas, projetos e pronúncia, o aluno pode transcrever pelo navegador ou gravar até 90 segundos para se ouvir e baixar o arquivo. Essa gravação é temporária; sair descarta a cópia da sessão. O acesso ao microfone só começa após o botão correspondente e depende da autorização do navegador. Transcrição pode depender de um serviço externo; gravação e reprodução locais não calculam nota acústica.
 
 ## Jogos livres
 
@@ -164,6 +186,8 @@ Para adicionar um vídeo:
 src/
   components/      exercícios, áudio, player de vídeo e elementos visuais
   games/           regras, componentes e recordes dos jogos casuais
+  interactive/     cenas SVG e exploração/desafios
+  practice/        conversação, pronúncia, erros, projetos e áudio local
   layouts/         navegação e estrutura responsiva
   pages/           áreas de estudo e configurações
   content/         unidades, vocabulário, histórias e curadoria
@@ -186,6 +210,6 @@ Vocabulário segue `Word`, histórias seguem `Story`. IDs existentes não devem 
 
 ## Estado e limites
 
-Consulte [STATUS.md](STATUS.md) para o registro de entrega. O núcleo local funciona e foi testado em Chromium, inclusive persistência, retomada, revisão, importação/exportação, mobile e offline. A cobertura de B2/C1 é inicial; 24 unidades não representam um curso integral de todos os níveis CEFR. Os 338 itens usam um corpus pedagógico inicial, não uma validação editorial externa. Não existe avaliador de IA para respostas livres.
+Consulte [STATUS.md](STATUS.md) para o registro de entrega. O núcleo local funciona e foi testado em Chromium, inclusive persistência, retomada, revisão, importação/exportação, mobile e offline. As 48 aulas e os projetos ampliam o percurso A1–C1, mas não constituem certificação ou garantia de fluência. Os 761 itens usam conteúdo autoral e ainda precisam de revisão editorial externa. Não existe avaliador de IA para respostas livres.
 
 Permanecem dependentes de configuração ou curadoria: Supabase real, vídeos verificados e deploy Cloudflare. Safari/Firefox, qualidade acústica, envio de e-mail e áudio físico/microfone em dispositivos reais não foram validados neste ambiente. A experiência não depende deles para estudar localmente.

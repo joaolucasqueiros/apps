@@ -15,6 +15,7 @@ import {
   Play,
 } from "lucide-react";
 import { useLearning } from "../hooks/useLearning";
+import { coursePaths } from "../content/curriculum";
 import { lessons, lessonById, priorities } from "../content/lessons";
 import { mastery } from "../utils/learning";
 import { Badge, PathArt, Progress, SectionTitle } from "../components/ui";
@@ -87,7 +88,9 @@ export function Dashboard() {
       ? `/session/${state.activeSession.minutes}`
       : `/lesson/${lesson.id}`;
   const completed = state.lessons.filter((l) => l.completed).length;
-  const levelLessons = lessons.filter((l) => l.level === "A2");
+  const levelLessons = lessons.filter(
+    (l) => l.level === state.profile.initialLevel,
+  );
   const levelDone = state.lessons.filter(
     (l) => l.completed && levelLessons.some((x) => x.id === l.id),
   ).length;
@@ -100,7 +103,12 @@ export function Dashboard() {
   const recommended = (
     errors.length
       ? errors
-      : priorities
+      : [
+          ...new Set([
+            ...coursePaths[state.profile.initialLevel].lessons,
+            ...priorities,
+          ]),
+        ]
           .map((id) => lessonById(id)!)
           .filter((l) => !state.lessons.find((p) => p.id === l.id)?.completed)
   ).slice(0, 3);
@@ -134,6 +142,23 @@ export function Dashboard() {
         </div>
         <PathArt goal={state.profile.goal} />
       </section>
+      <nav className="practical-nav" aria-label="Práticas de comunicação">
+        <Link to="/explore">
+          <BookOpen size={20} />
+          Explorar cenas interativas
+          <ArrowRight size={16} />
+        </Link>
+        <Link to="/conversation">
+          <Headphones size={20} />
+          Praticar uma conversa
+          <ArrowRight size={16} />
+        </Link>
+        <Link to="/practice">
+          <Lightbulb size={20} />
+          Erros, pronúncia e projetos
+          <ArrowRight size={16} />
+        </Link>
+      </nav>
       <section className="stats-grid" aria-label="Seu progresso">
         <div className="stat-card">
           <span className="stat-icon blue">
@@ -192,7 +217,7 @@ export function Dashboard() {
           {
             n: 5,
             tag: "Um pequeno passo",
-            desc: "Uma pausa, três exercícios e uma nova descoberta.",
+            desc: "Quatro atividades curtas: estrutura, palavras, escuta e leitura.",
             icon: Sparkles,
             color: "peach",
           },
@@ -206,7 +231,7 @@ export function Dashboard() {
           {
             n: 30,
             tag: "Vá um pouco além",
-            desc: "Gramática, listening e uma revisão dos seus erros.",
+            desc: "Mais contexto, quatro habilidades e atenção aos seus erros.",
             icon: Headphones,
             color: "blue",
           },
@@ -247,7 +272,7 @@ export function Dashboard() {
                 <em>yesterday.</em>
               </strong>
               <div className="cover-bottom">
-                A2 <span>✦</span> BUILD YOUR CONFIDENCE
+                {lesson.level} <span>✦</span> BUILD YOUR CONFIDENCE
               </div>
             </div>
             <div className="continue-copy">
@@ -353,7 +378,7 @@ export function Dashboard() {
             <h3>Próximo marco: {state.profile.goal}</h3>
             <p>Mais autonomia nas conversas do dia a dia.</p>
             <div className="progress-label">
-              <span>Fundamentos de A2</span>
+              <span>Fundamentos de {state.profile.initialLevel}</span>
               <strong>
                 {levelDone}/{levelLessons.length}
               </strong>

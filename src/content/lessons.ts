@@ -1,19 +1,6 @@
 import type { Exercise, Lesson, Level } from "../types";
-type Seed = {
-  id: string;
-  title: string;
-  level: Level;
-  subtitle: string;
-  rule: string;
-  detail: string;
-  formula: string[];
-  wrong: string;
-  right: string;
-  why: string;
-  context: string;
-  rows: string[];
-  distractors: string[];
-};
+import { coursePaths } from "./curriculum";
+import { extraLessons, type Seed } from "./lessonExtensions";
 const seeds: Seed[] = [
   {
     id: "simple-past",
@@ -650,7 +637,7 @@ function parse(row: string) {
     sentence: marked.replace(/<[^>]+>/, "_____"),
   };
 }
-export const lessons: Lesson[] = seeds.map((s) => {
+export const lessons: Lesson[] = [...seeds, ...extraLessons].map((s) => {
   const parsed = s.rows.map(parse);
   const make = (i: number): Exercise => {
     const r = parsed[i];
@@ -687,7 +674,7 @@ export const lessons: Lesson[] = seeds.map((s) => {
             ? "Organize as palavras para formar a frase."
             : kind === "dictation"
               ? "Ouça e escreva a frase em inglês."
-              : "Complete a frase com a forma adequada.",
+              : `Complete a frase para expressar: “${r.pt}”`,
       sentence: isGap ? r.sentence : kind === "order" ? r.en : undefined,
       options: kind === "choice" ? shuffled : undefined,
       answers: [isGap ? r.answer : r.en],
@@ -708,7 +695,14 @@ export const lessons: Lesson[] = seeds.map((s) => {
       "Reconhecer a estrutura e evitar o erro mais comum.",
       "Construir e ouvir frases antes de avaliar o aprendizado.",
     ],
-    prerequisites: s.level === "A1" ? [] : ["word-order"],
+    prerequisites:
+      coursePaths[s.level].lessons.indexOf(s.id) > 0
+        ? [
+            coursePaths[s.level].lessons[
+              coursePaths[s.level].lessons.indexOf(s.id) - 1
+            ],
+          ]
+        : [],
     explanation: [s.rule, s.detail],
     formula: s.formula,
     examples: parsed.slice(0, 3).map(({ en, pt }) => ({ en, pt })),

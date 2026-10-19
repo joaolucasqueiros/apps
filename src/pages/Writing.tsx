@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
+import { extraWritingTasks } from "../content/writingTasks";
+import { analyseWriting } from "../practice/feedback";
 import { useState } from "react";
 import { PenLine, Check, Lightbulb } from "lucide-react";
 import { PageTitle, Badge, AudioButton } from "../components/ui";
 import { useLearning } from "../hooks/useLearning";
 import { uid } from "../utils/learning";
-const tasks = [
+const initialTasks = [
   {
     id: "yesterday",
     title: "Uma pequena história de ontem",
@@ -65,6 +68,7 @@ const tasks = [
     ],
   },
 ];
+const tasks = [...initialTasks, ...extraWritingTasks];
 export function Writing() {
   const { state, update, notify } = useLearning();
   const [id, setId] = useState(tasks[0].id);
@@ -75,6 +79,7 @@ export function Writing() {
   const [draft, setDraft] = useState(
     state.drafts?.[`writing-${id}`]?.text ?? latest?.answer ?? "",
   );
+  const analysis = analyseWriting(draft);
   const [show, setShow] = useState(false);
   const [checks, setChecks] = useState<string[]>([]);
   const save = (success: boolean) => {
@@ -133,7 +138,9 @@ export function Writing() {
                 ? "Casa"
                 : t.id === "plans"
                   ? "Planos"
-                  : "Opinião"}
+                  : t.id === "opinion"
+                    ? "Opinião"
+                    : t.title}
           </button>
         ))}
       </div>
@@ -183,6 +190,31 @@ export function Writing() {
         </div>
         {show && (
           <div className="writing-review">
+            <h3>Dicas automáticas para seu texto</h3>
+            {analysis.issues.length ? (
+              analysis.issues.map((issue) => (
+                <div className="feedback warning" key={issue.id}>
+                  <p>
+                    <strong>{issue.excerpt}</strong> →{" "}
+                    <strong>{issue.suggestion}</strong>
+                  </p>
+                  <p>{issue.explanation}</p>
+                  <Link className="text-link" to={"/lesson/" + issue.lesson}>
+                    Rever a estrutura na aula
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <p>
+                Nenhum dos padrões de erro disponíveis foi encontrado. Isso não
+                garante que todo o texto esteja correto.
+              </p>
+            )}
+            <p className="muted">
+              {analysis.words} palavras · {analysis.sentences} frases. As dicas
+              verificam padrões locais de gramática e uso; não avaliam
+              integralmente o sentido.
+            </p>
             <h3>Uma possibilidade, não a única resposta</h3>
             <p lang="en">{task.model}</p>
             <AudioButton text={task.model} />
@@ -206,7 +238,11 @@ export function Writing() {
                 <PenLine size={16} />
                 Ainda quero melhorar
               </button>
-              <button className="button" onClick={() => save(true)}>
+              <button
+                className="button"
+                disabled={checks.length !== task.checks.length}
+                onClick={() => save(true)}
+              >
                 <Check size={16} />
                 Concluí minha revisão
               </button>

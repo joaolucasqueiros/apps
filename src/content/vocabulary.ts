@@ -1,4 +1,5 @@
 import type { Exercise, Word } from "../types";
+import { sceneWords } from "./scenes";
 const groups: [string, string, string[]][] = [
   [
     "Casa e cômodos",
@@ -231,7 +232,7 @@ const groups: [string, string, string[]][] = [
     ],
   ],
 ];
-export const words: Word[] = groups.flatMap(
+const originalWords: Word[] = groups.flatMap(
   ([category, illustration, rows], g) =>
     rows.map((row, i) => {
       const [en, pt, example, pronunciation] = row.split("|");
@@ -248,7 +249,15 @@ export const words: Word[] = groups.flatMap(
       };
     }),
 );
-export const categories = groups.map(([name]) => name);
+export const words = [
+  ...originalWords,
+  ...sceneWords.filter(
+    (w, i, all) =>
+      !originalWords.some((x) => x.en.toLowerCase() === w.en.toLowerCase()) &&
+      all.findIndex((x) => x.en.toLowerCase() === w.en.toLowerCase()) === i,
+  ),
+];
+export const categories = [...new Set(words.map((w) => w.category))];
 const images: Record<string, { symbol: string; alt: string }> = {
   shower: { symbol: "🚿", alt: "Água saindo de um chuveiro" },
   keyboard: { symbol: "⌨️", alt: "Teclas de um teclado de computador" },
@@ -262,8 +271,8 @@ export const vocabularyExercises: Exercise[] = words.map((w, i) => {
   const auditory = !image && i % 3 === 0;
   const peers = words.filter((x) => x.category === w.category && x.id !== w.id);
   const options = image
-    ? [w.en, ...peers.map((p) => p.en)]
-    : [w.pt, ...peers.map((p) => p.pt)];
+    ? [w.en, ...peers.slice(0, 3).map((p) => p.en)]
+    : [w.pt, ...peers.slice(0, 3).map((p) => p.pt)];
   const rotate = i % 4;
   return {
     id: `vocab-${w.id}`,

@@ -1,3 +1,4 @@
+import { ProgressEvidence } from "../practice/ProgressEvidence";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -71,7 +72,7 @@ export function ProgressPage() {
         <div className="stat-card">
           <Clock size={22} />
           <span>
-            Tempo com a página ativa
+            Tempo de estudo
             <strong>
               {Math.floor(totalSeconds / 60)} <small>min</small>
             </strong>
@@ -139,6 +140,7 @@ export function ProgressPage() {
           })}
         </section>
       </div>
+      <ProgressEvidence />
       <section className="panel">
         <h2>O que seus resultados estão dizendo</h2>
         <div className="table-scroll">

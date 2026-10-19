@@ -2,43 +2,18 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLearning } from "../hooks/useLearning";
-import { lessons, priorities } from "../content/lessons";
-import { listeningStories } from "../content/stories";
+import { selectPractice } from "../practice/adaptive";
+import { ExerciseContext } from "../practice/ExerciseContext";
 import { questionBank } from "../assessments/engine";
-import { mastery, uid } from "../utils/learning";
-import { PageTitle, Badge, Progress, AudioButton } from "../components/ui";
+import { uid } from "../utils/learning";
+import { PageTitle, Badge, Progress } from "../components/ui";
 import { Exercise } from "../components/Exercise";
 export function Session() {
   const { minutes } = useParams();
   const duration = [5, 15, 30].includes(Number(minutes)) ? Number(minutes) : 5;
   const { state, update } = useLearning();
   const start = () => {
-    const ranked = [...lessons].sort((a, b) => {
-      const score = (id: string) =>
-        mastery(state.attempts, id).label === "Precisa de revisão"
-          ? -100
-          : priorities.indexOf(id) < 0
-            ? 99
-            : priorities.indexOf(id);
-      return score(a.id) - score(b.id);
-    });
-    const grammar = ranked
-      .slice(0, 2)
-      .flatMap((l) => l.exercises)
-      .sort(
-        (a, b) =>
-          state.attempts.filter((t) => t.exerciseId === a.id).length -
-          state.attempts.filter((t) => t.exerciseId === b.id).length,
-      );
-    const chosen =
-      duration === 5
-        ? grammar.slice(0, 3)
-        : duration === 15
-          ? grammar.slice(0, 7)
-          : [
-              ...grammar.slice(0, 10),
-              ...listeningStories[0].questions.filter((q) => !q.assessment),
-            ];
+    const chosen = selectPractice(state, duration);
     update((s) => ({
       ...s,
       activeSession: {
@@ -62,8 +37,6 @@ export function Session() {
     .map((id) => questionBank.find((q) => q.id === id))
     .filter((q) => !!q);
   const q = pool[active.index];
-  const lesson = lessons.find((l) => l.id === q?.topic);
-  const story = listeningStories.find((s) => s.id === q?.topic);
   const correct = active.results.filter((r) => r.correct).length;
   return (
     <>
@@ -98,6 +71,12 @@ export function Session() {
             <button className="button secondary" onClick={start}>
               Começar nova sessão
             </button>
+            <Link className="button secondary" to="/conversation">
+              Praticar uma conversa
+            </Link>
+            <Link className="button secondary" to="/writing">
+              Escrever com propósito
+            </Link>
             <Link className="button secondary" to="/progress">
               Ver minha evolução
             </Link>
@@ -112,23 +91,7 @@ export function Session() {
             </span>
           </div>
           <Progress value={(active.index / pool.length) * 100} />
-          {lesson && (
-            <section className="session-rule">
-              <h2>{lesson.title}</h2>
-              <p>{lesson.explanation[0]}</p>
-              <Link className="text-link" to={`/lesson/${lesson.id}`}>
-                Explorar a aula completa
-                <ArrowRight size={15} />
-              </Link>
-            </section>
-          )}
-          {story && (
-            <section className="panel">
-              <h2>{story.title}</h2>
-              <p>Listening com voz sintetizada.</p>
-              <AudioButton text={story.text} />
-            </section>
-          )}
+          <ExerciseContext exercise={q} />
           <Exercise
             key={`${active.id}-${q.id}`}
             exercise={q}

@@ -1,11 +1,13 @@
 import { allGrammarExercises } from "../content/lessons";
 import { vocabularyExercises } from "../content/vocabulary";
 import { storyExercises } from "../content/stories";
+import { sceneExercises } from "../content/scenes";
 import type { Exercise, Level, TestResult } from "../types";
 export const questionBank: Exercise[] = [
   ...allGrammarExercises,
   ...vocabularyExercises,
   ...storyExercises,
+  ...sceneExercises,
 ];
 export function selectAssessment(
   history: TestResult[],

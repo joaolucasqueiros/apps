@@ -1,3 +1,4 @@
+import { HumanListening } from "../practice/HumanListening";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
@@ -14,6 +15,7 @@ import { Exercise } from "../components/Exercise";
 export function Stories() {
   const listening = useLocation().pathname === "/listening";
   const stories = listening ? listeningStories : readingStories;
+  const [level, setLevel] = useState("Todos");
   const [selected, setSelected] = useState("");
   const [transcript, setTranscript] = useState(false);
   const [translation, setTranslation] = useState(false);
@@ -118,49 +120,68 @@ export function Stories() {
         </>
       ) : (
         <>
+          <div className="story-level-filter">
+            <label>
+              Nível do conteúdo
+              <select value={level} onChange={(e) => setLevel(e.target.value)}>
+                {["Todos", "A1", "A2", "B1", "B2", "C1"].map((l) => (
+                  <option key={l}>{l}</option>
+                ))}
+              </select>
+            </label>
+            <span>
+              {
+                stories.filter((s) => level === "Todos" || s.level === level)
+                  .length
+              }{" "}
+              conteúdos disponíveis
+            </span>
+          </div>
           <div className="story-grid">
-            {stories.map((s, i) => (
-              <button
-                className="story-card"
-                key={s.id}
-                onClick={() => {
-                  setSelected(s.id);
-                  setIndex(0);
-                }}
-              >
-                <div className={`story-art art-${i % 4}`}>
-                  <span className="story-emoji">
-                    {["🚘", "🌳", "🔑", "💡", "🍽️", "💻"][i % 6]}
-                  </span>
-                  <span className="story-art-label">
-                    {listening ? "LISTEN & DISCOVER" : "READ & EXPLORE"}
-                  </span>
-                </div>
-                <div className="story-card-copy">
-                  <div className="badge-row">
-                    <Badge>{s.level}</Badge>
-                    <span>
-                      {s.minutes} min · {s.category}
+            {stories
+              .filter((s) => level === "Todos" || s.level === level)
+              .map((s, i) => (
+                <button
+                  className="story-card"
+                  key={s.id}
+                  onClick={() => {
+                    setSelected(s.id);
+                    setIndex(0);
+                  }}
+                >
+                  <div className={`story-art art-${i % 4}`}>
+                    <span className="story-emoji">
+                      {["🚘", "🌳", "🔑", "💡", "🍽️", "💻"][i % 6]}
+                    </span>
+                    <span className="story-art-label">
+                      {listening ? "LISTEN & DISCOVER" : "READ & EXPLORE"}
                     </span>
                   </div>
-                  <h2>{s.title}</h2>
-                  <p>
-                    {listening
-                      ? "Ouça, repita e descubra o que você entendeu."
-                      : "Leia em inglês, explore o contexto e teste a compreensão."}
-                  </p>
-                  <span className="text-link">
-                    {listening ? (
-                      <Headphones size={16} />
-                    ) : (
-                      <BookOpen size={16} />
-                    )}
-                    Começar
-                    <ArrowRight size={16} />
-                  </span>
-                </div>
-              </button>
-            ))}
+                  <div className="story-card-copy">
+                    <div className="badge-row">
+                      <Badge>{s.level}</Badge>
+                      <span>
+                        {s.minutes} min · {s.category}
+                      </span>
+                    </div>
+                    <h2>{s.title}</h2>
+                    <p>
+                      {listening
+                        ? "Ouça, repita e descubra o que você entendeu."
+                        : "Leia em inglês, explore o contexto e teste a compreensão."}
+                    </p>
+                    <span className="text-link">
+                      {listening ? (
+                        <Headphones size={16} />
+                      ) : (
+                        <BookOpen size={16} />
+                      )}
+                      Começar
+                      <ArrowRight size={16} />
+                    </span>
+                  </div>
+                </button>
+              ))}
           </div>
           {listening && (
             <div className="info-note">
@@ -172,6 +193,7 @@ export function Stories() {
           )}
         </>
       )}
+      {listening && !story && <HumanListening />}
     </>
   );
 }

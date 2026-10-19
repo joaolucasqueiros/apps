@@ -42,8 +42,8 @@ describe("answer evaluation", () => {
   });
 });
 describe("curriculum and reserved assessments", () => {
-  it("provides all 24 units with guided practice and dedicated assessments", () => {
-    expect(lessons).toHaveLength(24);
+  it("provides all 48 units with guided practice and dedicated assessments", () => {
+    expect(lessons).toHaveLength(48);
     for (const l of lessons) {
       expect(l.exercises).toHaveLength(7);
       expect(l.assessment).toHaveLength(2);
@@ -51,8 +51,8 @@ describe("curriculum and reserved assessments", () => {
       expect(l.explanation).toHaveLength(2);
     }
   });
-  it("contains 338 uniquely identified questions and keeps study questions out of tests", () => {
-    expect(questionBank).toHaveLength(338);
+  it("contains 761 uniquely identified questions and keeps study questions out of tests", () => {
+    expect(questionBank).toHaveLength(761);
     expect(new Set(questionBank.map((q) => q.id)).size).toBe(
       questionBank.length,
     );

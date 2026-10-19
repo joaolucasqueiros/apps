@@ -17,6 +17,9 @@ import { Library } from "./pages/Library";
 import { Settings } from "./pages/Settings";
 import { Session } from "./pages/Session";
 import "./styles.css";
+const InteractiveScenes = lazy(() => import("./interactive/InteractiveScenes"));
+const Conversation = lazy(() => import("./practice/Conversation"));
+const Practice = lazy(() => import("./practice/Practice"));
 const Games = lazy(() => import("./pages/Games"));
 class ErrorBoundary extends Component<
   { children: ReactNode },
@@ -52,6 +55,36 @@ createRoot(document.getElementById("root")!).render(
               <Route path="course" element={<Course />} />
               <Route path="grammar" element={<Course />} />
               <Route path="lesson/:id" element={<Lesson />} />
+              <Route
+                path="explore/:id?"
+                element={
+                  <Suspense
+                    fallback={<p role="status">Preparando as cenas…</p>}
+                  >
+                    <InteractiveScenes />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="conversation/:id?"
+                element={
+                  <Suspense
+                    fallback={<p role="status">Preparando a conversa…</p>}
+                  >
+                    <Conversation />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="practice/*"
+                element={
+                  <Suspense
+                    fallback={<p role="status">Preparando as práticas…</p>}
+                  >
+                    <Practice />
+                  </Suspense>
+                }
+              />
               <Route path="vocabulary" element={<Vocabulary />} />
               <Route path="flashcards" element={<Flashcards />} />
               <Route path="reviews" element={<Flashcards />} />

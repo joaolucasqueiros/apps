@@ -24,6 +24,9 @@ import {
   Leaf,
   WifiOff,
   Gamepad2,
+  Compass,
+  MessageCircle,
+  FlaskConical,
 } from "lucide-react";
 import { useLearning } from "../hooks/useLearning";
 import { lessons } from "../content/lessons";
@@ -33,12 +36,15 @@ const links = [
   ["/course", "Meu curso", BookOpen],
   ["/grammar", "Gramática", SpellCheck],
   ["/vocabulary", "Vocabulário", Languages],
+  ["/explore", "Cenas interativas", Compass],
   ["/listening", "Listening", Headphones],
   ["/speaking", "Speaking", Mic],
+  ["/conversation", "Conversação", MessageCircle],
   ["/reading", "Reading", FileText],
   ["/writing", "Writing", PenLine],
   ["/flashcards", "Flashcards", Layers],
   ["/reviews", "Revisões", RotateCcw],
+  ["/practice", "Prática e projetos", FlaskConical],
   ["/tests", "Testes", ClipboardCheck],
   ["/progress", "Minha evolução", ChartNoAxesCombined],
   ["/library", "Biblioteca", Library],
@@ -151,9 +157,11 @@ export function AppLayout() {
         </Link>
         <div className="workspace-label">SEU ESPAÇO DE APRENDIZAGEM</div>
         <nav aria-label="Navegação principal">
-          {links.map(([path, label, Icon], i) => (
+          {links.map(([path, label, Icon]) => (
             <div key={path}>
-              {[2, 8, 11].includes(i) && <div className="nav-divider" />}
+              {["/grammar", "/flashcards", "/progress"].includes(path) && (
+                <div className="nav-divider" />
+              )}
               {path === "/games" && (
                 <>
                   <div className="nav-divider" />

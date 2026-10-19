@@ -1,3 +1,4 @@
+import { extraListening, extraReading } from "./extendedStories";
 import type { Exercise, Level } from "../types";
 export interface Story {
   id: string;
@@ -9,7 +10,7 @@ export interface Story {
   translation: string;
   questions: Exercise[];
 }
-type StorySeed = [
+export type StorySeed = [
   string,
   string,
   Level,
@@ -41,7 +42,7 @@ function build(rows: StorySeed[], skill: "reading" | "listening"): Story[] {
     })),
   }));
 }
-export const listeningStories = build(
+const initialListening = build(
   [
     [
       "airport-ride",
@@ -230,7 +231,7 @@ export const listeningStories = build(
   ],
   "listening",
 );
-export const readingStories = build(
+const initialReading = build(
   [
     [
       "small-progress",
@@ -379,6 +380,14 @@ export const readingStories = build(
   ],
   "reading",
 );
+export const listeningStories = [
+  ...initialListening,
+  ...build(extraListening, "listening"),
+];
+export const readingStories = [
+  ...initialReading,
+  ...build(extraReading, "reading"),
+];
 export const storyExercises = [...listeningStories, ...readingStories].flatMap(
   (s) => s.questions,
 );

@@ -1,3 +1,5 @@
+import { scenes } from "../content/scenes";
+import { conversations } from "../content/communication";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -267,6 +269,30 @@ export function Lesson() {
           />
         </>
       )}
+      {step === 0 &&
+        (scenes.some((s) => s.lesson === l.id) ||
+          conversations.some((c) => c.lesson === l.id)) && (
+          <section className="lesson-related">
+            <h2>Use esta aula na vida real</h2>
+            <div className="practical-nav">
+              {scenes
+                .filter((s) => s.lesson === l.id)
+                .map((s) => (
+                  <Link key={s.id} to={"/explore/" + s.id}>
+                    {s.icon} Explorar {s.title}
+                  </Link>
+                ))}
+              {conversations
+                .filter((c) => c.lesson === l.id)
+                .slice(0, 2)
+                .map((c) => (
+                  <Link key={c.id} to={"/conversation/" + c.id}>
+                    {c.icon} {c.title}
+                  </Link>
+                ))}
+            </div>
+          </section>
+        )}
       {step === summaryStep && (
         <section className="panel summary-card">
           <span className="stat-icon green">
