@@ -1,15 +1,41 @@
 {
-  "name": "firemax-bot",
+  "name": "english-path",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
-    "start": "node bot.js"
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "deploy": "wrangler deploy",
+    "deploy:check": "wrangler deploy --dry-run"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "^6.7.2",
-    "qrcode-terminal": "^0.12.0",
-    "pino": "^8.0.0"
+    "@supabase/supabase-js": "^2.57.0",
+    "idb": "^8.0.3",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "fake-indexeddb": "^6.2.2",
+    "jsdom": "^26.1.0",
+    "typescript": "~5.9.2",
+    "vite": "^6.3.6",
+    "vite-plugin-pwa": "^1.0.3",
+    "vitest": "^3.2.4",
+    "wrangler": "4.86.0"
   }
-  
 }
-
