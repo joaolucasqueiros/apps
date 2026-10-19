@@ -1,4 +1,4 @@
-import React, { Component, type ReactNode } from "react";
+import React, { Component, lazy, Suspense, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { LearningProvider } from "./hooks/useLearning";
@@ -17,6 +17,7 @@ import { Library } from "./pages/Library";
 import { Settings } from "./pages/Settings";
 import { Session } from "./pages/Session";
 import "./styles.css";
+const Games = lazy(() => import("./pages/Games"));
 class ErrorBoundary extends Component<
   { children: ReactNode },
   { error: boolean }
@@ -63,6 +64,16 @@ createRoot(document.getElementById("root")!).render(
               <Route path="library" element={<Library />} />
               <Route path="settings" element={<Settings />} />
               <Route path="session/:minutes" element={<Session />} />
+              <Route
+                path="games/*"
+                element={
+                  <Suspense
+                    fallback={<p role="status">Preparando os jogos…</p>}
+                  >
+                    <Games />
+                  </Suspense>
+                }
+              />
               <Route
                 path="*"
                 element={

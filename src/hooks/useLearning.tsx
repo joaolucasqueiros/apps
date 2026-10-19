@@ -14,6 +14,8 @@ import {
   stageState,
 } from "../persistence/store";
 import { uid } from "../utils/learning";
+import { useLocation } from "react-router-dom";
+import { isCasualRoute } from "../games/engine";
 type Value = {
   state: LearningState;
   update: (fn: (s: LearningState) => LearningState) => void;
@@ -24,6 +26,7 @@ type Value = {
 };
 const Context = createContext<Value | null>(null);
 export function LearningProvider({ children }: { children: ReactNode }) {
+  const casual = isCasualRoute(useLocation().pathname);
   const [state, setState] = useState(emptyState);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState("");
@@ -67,14 +70,15 @@ export function LearningProvider({ children }: { children: ReactNode }) {
   const update = (fn: (s: LearningState) => LearningState) =>
     replace({ ...fn(latest.current), updatedAt: new Date().toISOString() });
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || casual) return;
     let active = Date.now();
+    let wasVisible = document.visibilityState === "visible";
     let seconds = 0;
     const tick = () => {
       const now = Date.now();
-      if (document.visibilityState === "visible")
-        seconds += Math.min((now - active) / 1000, 35);
+      if (wasVisible) seconds += Math.min((now - active) / 1000, 35);
       active = now;
+      wasVisible = document.visibilityState === "visible";
       if (seconds >= 30) {
         const amount = Math.floor(seconds);
         seconds = 0;
@@ -109,8 +113,9 @@ export function LearningProvider({ children }: { children: ReactNode }) {
       clearInterval(timer);
       document.removeEventListener("visibilitychange", flush);
       window.removeEventListener("pagehide", flush);
+      flush();
     };
-  }, [ready]);
+  }, [ready, casual]);
   useEffect(() => {
     if (!notice) return;
     const id = setTimeout(() => notify(""), 6000);

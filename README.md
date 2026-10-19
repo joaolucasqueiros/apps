@@ -37,6 +37,7 @@ O Playwright usa `/usr/bin/chromium` neste ambiente. Em outras máquinas, instal
 - Diagnóstico, avaliação por unidade e simulado por nível. Questões menos utilizadas são priorizadas. Uma avaliação em andamento mantém posição e respostas após recarga.
 - Histórico de respostas e tentativas, tempo com a página visível, classificações por tópico, conquistas sem sequência obrigatória e exportação/importação validada de backup.
 - Tema claro/escuro/sistema, navegação por teclado, foco visível, menu móvel com controle de foco, avisos acessíveis e respeito a movimento reduzido.
+- **Jogos livres**: memória inglês–português, Chuva de palavras (digitação) e Palavra secreta. Acesso independente das aulas, com recordes locais e sem afetar o progresso acadêmico.
 - PWA com conteúdo local em cache e modo offline, além de configuração opcional real de autenticação/sincronização Supabase.
 
 ## Progresso e dados
@@ -45,7 +46,7 @@ O banco `english-path`, store `state`, guarda um documento versionado. Um journa
 
 O progresso da aula guarda a etapa atual. Concluir uma unidade exige praticar os sete exercícios e acertar as duas questões finais. A posição e os resultados de avaliações globais também ficam salvos. Sessões rápidas também mantêm a seleção de questões, posição e respostas após recarga.
 
-O tempo representa a página visível, registrado em intervalos e ao ocultar a aba; não é prova de atenção. Relógios e datas usam o dispositivo do aluno.
+O tempo de estudo representa a página visível fora de `/games` e suas subrotas, registrado em intervalos, ao ocultar a aba e ao entrar nos jogos; não é prova de atenção. Relógios e datas usam o dispositivo do aluno.
 
 Classificação usa até 20 **primeiras tentativas** por tópico, excluindo respostas com apoio e autoavaliações:
 
@@ -65,7 +66,17 @@ SM-2 adaptado em `src/utils/learning.ts`: notas 0, 3, 4 e 5. Esquecimento reinic
 
 ### Backup
 
-Em **Configurações → Exportar JSON**, baixe o estado completo. Faça isso antes de limpar dados do navegador ou trocar de dispositivo. Para restaurar, importe um JSON de até 10 MB, confira o resumo e escolha **Mesclar backup**. Arquivos incompatíveis, campos inválidos e IDs duplicados são recusados antes de alterar o estado. Respostas/testes/sessões são unidos por ID; entidades editáveis usam a atualização mais recente. Exclusões de flashcards são marcadores persistentes.
+Em **Configurações → Exportar JSON**, baixe o estado acadêmico completo. Faça isso antes de limpar dados do navegador ou trocar de dispositivo. Para restaurar, importe um JSON de até 10 MB, confira o resumo e escolha **Mesclar backup**. Arquivos incompatíveis, campos inválidos e IDs duplicados são recusados antes de alterar o estado. Respostas/testes/sessões são unidos por ID; entidades editáveis usam a atualização mais recente. Exclusões de flashcards são marcadores persistentes.
+
+## Jogos livres
+
+Abra **Jogos livres**, no menu, a qualquer momento. Os jogos usam o vocabulário local, não exigem conclusão de aulas e funcionam offline após o primeiro carregamento da versão de produção.
+
+- **Memória em dois idiomas:** combine inglês e tradução em tabuleiros de 4, 6 ou 8 pares, sem limite de tempo. Vence ao encontrar todos os pares; o recorde é o menor número de jogadas por tamanho.
+- **Chuva de palavras:** digite uma palavra visível e envie com Enter ou o botão. Dez acertos vencem; três palavras expiradas encerram a rodada. Há três velocidades, pausa manual e pausa automática ao ocultar a aba. O recorde considera apenas o tempo ativo, separado por velocidade.
+- **Palavra secreta:** use a tradução como dica e o teclado físico ou da tela para descobrir as letras. Seis letras incorretas encerram a rodada; revelar a resposta também encerra. O recorde é o menor número de erros em uma vitória.
+
+Partidas não geram respostas acadêmicas, revisões, conquistas, recomendações, notas nem tempo de estudo. Recordes e totais de partidas concluídas usam somente a chave `english-path-casual-games-v1` do localStorage. Não entram no backup acadêmico nem na sincronização Supabase. Rodadas em andamento recomeçam ao recarregar ou sair; rodadas abandonadas não contam para os totais. Limpar os dados do site apaga os recordes locais.
 
 ## Supabase opcional
 
@@ -95,14 +106,14 @@ O site está na raiz do repositório, preparado para o projeto **apps** mostrado
 
 No projeto Cloudflare conectado ao GitHub, use:
 
-| Configuração | Valor |
-| --- | --- |
-| Repositório | `joaolucasqueiros/apps` |
-| Branch de produção | `main` |
-| Diretório raiz | `/` (raiz do repositório) |
-| Comando de build do painel | deixe vazio; o Wrangler executa `npm run build` |
-| Comando de deploy | `npm run deploy` — o comando existente `npx wrangler deploy` também funciona |
-| Node.js | `20.20.2`, definido em `.nvmrc`; se necessário, configure `NODE_VERSION=20.20.2` |
+| Configuração               | Valor                                                                            |
+| -------------------------- | -------------------------------------------------------------------------------- |
+| Repositório                | `joaolucasqueiros/apps`                                                          |
+| Branch de produção         | `main`                                                                           |
+| Diretório raiz             | `/` (raiz do repositório)                                                        |
+| Comando de build do painel | deixe vazio; o Wrangler executa `npm run build`                                  |
+| Comando de deploy          | `npm run deploy` — o comando existente `npx wrangler deploy` também funciona     |
+| Node.js                    | `20.20.2`, definido em `.nvmrc`; se necessário, configure `NODE_VERSION=20.20.2` |
 
 Salve e implante o commit mais recente da `main`. Se a integração automática estiver habilitada, o push da limpeza já inicia uma nova implantação. O nome `apps` em `wrangler.jsonc` deve corresponder ao nome do Worker no painel.
 
@@ -152,6 +163,7 @@ Para adicionar um vídeo:
 ```text
 src/
   components/      exercícios, áudio, player de vídeo e elementos visuais
+  games/           regras, componentes e recordes dos jogos casuais
   layouts/         navegação e estrutura responsiva
   pages/           áreas de estudo e configurações
   content/         unidades, vocabulário, histórias e curadoria

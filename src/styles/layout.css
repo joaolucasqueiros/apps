@@ -88,6 +88,12 @@
   background: var(--line);
   margin: 12px 9px;
 }
+.nav-group-label {
+  font-size: 8px;
+  letter-spacing: 1.3px;
+  color: var(--muted);
+  padding: 2px 12px 9px;
+}
 .nav-count {
   margin-left: auto;
   display: inline-flex;

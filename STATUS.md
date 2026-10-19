@@ -4,7 +4,8 @@
 
 - English Path na raiz do repositório; arquivos do projeto anterior removidos após backup privado verificado.
 - React/TypeScript/Vite, React Router, identidade própria, sidebar desktop e menu móvel.
-- 14 áreas de navegação, estados vazios úteis e controles com ações reais.
+- 15 áreas de navegação, estados vazios úteis e controles com ações reais.
+- Jogos livres separados do curso: memória bilíngue, digitação com palavras na tela e palavra secreta; recordes locais, teclado/toque e pausa automática na digitação. Tempo de jogos excluído do tempo de estudo.
 - 24 unidades com prática guiada, 7 atividades e 2 avaliações cada.
 - 92 palavras/expressões em 23 categorias; 6 situações de listening e 4 textos de leitura.
 - 338 questões, com 257 itens de estudo e 81 reservados para avaliação.
@@ -25,7 +26,7 @@
 - Vitest: correção, integridade dos 338 itens, separação de avaliações, SM-2, classificações, IndexedDB, recuperação, backup e conflitos.
 - Playwright/Chromium: aulas, feedback, retomada, flashcards, revisão, perfil/tema, diagnóstico, backup, modo sem microfone, rotas móveis e offline de produção.
 - Inspeção visual desktop (1440 px) e celular (390 px).
-- Depois da limpeza: instalação com lockfile, build, 14 testes Vitest e 10 testes Playwright aprovados na raiz.
+- Depois da inclusão dos jogos: build, 26 testes Vitest e 16 testes Playwright aprovados na raiz. Os fluxos verificam vitórias/derrotas, pausas, persistência de recordes, celular, cache offline e isolamento do progresso e tempo acadêmicos.
 - Wrangler deploy --dry-run aprovado; emulação local serviu a rota direta da aula e o service worker com HTTP 200, sem erros de JavaScript.
 
 Os resultados finais executados são informados na entrega. Não há teste remoto Supabase nem deploy publicado.
@@ -37,5 +38,5 @@ Os resultados finais executados são informados na entrega. Não há teste remot
 - Confirmar a implantação remota no painel Cloudflare e testar o endereço HTTPS de produção.
 - Expandir a profundidade de B2/C1, aumentar textos/áudios e realizar revisão editorial independente do corpus.
 - Validar voz/microfone em dispositivos reais e navegadores adicionais. Síntese disponível não garante reconhecimento de fala ou áudio offline.
-- Aulas, avaliações, sessões rápidas e rascunhos têm retomada persistente.
+- Aulas, avaliações, sessões rápidas e rascunhos têm retomada persistente. Rodadas de jogos em andamento recomeçam ao sair ou recarregar; apenas os recordes de partidas concluídas persistem localmente.
 - A plataforma não fornece certificação CEFR, nota acústica profissional nem correção semântica de escrita livre.

@@ -23,6 +23,7 @@ import {
   X,
   Leaf,
   WifiOff,
+  Gamepad2,
 } from "lucide-react";
 import { useLearning } from "../hooks/useLearning";
 import { lessons } from "../content/lessons";
@@ -41,6 +42,7 @@ const links = [
   ["/tests", "Testes", ClipboardCheck],
   ["/progress", "Minha evolução", ChartNoAxesCombined],
   ["/library", "Biblioteca", Library],
+  ["/games", "Jogos livres", Gamepad2],
 ] as const;
 export function AppLayout() {
   const { state, notice } = useLearning();
@@ -152,6 +154,12 @@ export function AppLayout() {
           {links.map(([path, label, Icon], i) => (
             <div key={path}>
               {[2, 8, 11].includes(i) && <div className="nav-divider" />}
+              {path === "/games" && (
+                <>
+                  <div className="nav-divider" />
+                  <div className="nav-group-label">UMA PAUSA PARA JOGAR</div>
+                </>
+              )}
               <NavLink to={path} end={path === "/"}>
                 <Icon size={18} />
                 <span>{label}</span>
